@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Databricks January Enablement Newsletter</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: DM Sans and DM Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lava: {
+                            500: '#FF5F46',
+                            600: '#FF3621', // Primary Brand Color
+                        },
+                        navy: {
+                            800: '#1B3139', // Primary Background/Text
+                            900: '#0B2026',
+                        },
+                        oat: {
+                            light: '#F9F7F4',
+                            medium: '#EEEDE9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        mono: ['"DM Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: "DM Sans", sans-serif;
+            background-color: #F9F7F4; /* Oat Light */
+            color: #1B3139; /* Navy 800 */
+        }
+        .brand-gradient {
+            background: linear-gradient(135deg, #1B3139 0%, #0B2026 100%);
+        }
+        .btn-lava {
+            background-color: #FF3621;
+            color: white;
+            transition: background-color 0.2s;
+        }
+        .btn-lava:hover {
+            background-color: #d62b19;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center py-8">
+
+    <!-- Main Container -->
+    <main class="w-full max-w-6xl bg-white shadow-xl overflow-hidden rounded-lg">
+        
+        <!-- Header -->
+        <header class="bg-navy-800 text-white p-8 brand-gradient relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-lava-600 rounded-full opacity-20 blur-3xl" aria-hidden="true"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <!-- Databricks logo -->
+                <img src="https://cdn.brandfetch.io/idSUrLOWbH/theme/light/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668081623507" alt="Databricks logo" class="h-8 w-auto" />
+                <svg viewBox="0 0 115 24" fill="none" class="h-8 w-auto text-white hidden" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M12.63 0.160156L6.54998 3.73016L0.469971 0.160156V18.5702L6.54998 22.1402L12.63 18.5702V0.160156ZM11.1 17.6502L6.54998 20.3102L2.00997 17.6502V15.0102L6.54998 17.6702L11.1 15.0102V17.6502ZM11.1 13.2502L6.54998 15.9102L2.00997 13.2502V10.6002L6.54998 13.2602L11.1 10.6002V13.2502ZM11.1 8.84016L6.54998 11.5002L2.00997 8.84016V6.19016L6.54998 8.85016L11.1 6.19016V8.84016ZM11.1 4.43016L6.54998 7.09016L2.00997 4.43016V1.95016L6.54998 4.61016L11.1 1.95016V4.43016Z" fill="#FF3621"/>
+                   <path d="M21.92 18.2302V14.5402H22.09C23.01 14.5402 23.8 14.3402 24.47 13.9302C25.14 13.5202 25.64 12.9602 25.98 12.2402C26.32 11.5202 26.49 10.6702 26.49 9.69016C26.49 8.73016 26.31 7.90016 25.96 7.18016C25.61 6.46016 25.11 5.89016 24.45 5.48016C23.79 5.06016 23.01 4.85016 22.09 4.85016H18.28V18.2302H21.92ZM21.94 11.5002H21.84V7.89016H22.09C22.42 7.89016 22.64 8.08016 22.75 8.47016C22.86 8.86016 22.91 9.27016 22.91 9.69016C22.91 10.1302 22.86 10.5302 22.75 10.9102C22.64 11.2902 22.37 11.4902 21.94 11.5002ZM34.2267 18.2302V17.0602C33.9867 17.4702 33.6467 17.8002 33.2067 18.0402C32.7767 18.2802 32.2667 18.4002 31.6867 18.4002C31.0267 18.4002 30.4567 18.2502 29.9767 17.9602C29.4967 17.6602 29.1267 17.2502 28.8567 16.7302C28.5967 16.2002 28.4667 15.6002 28.4667 14.9202C28.4667 14.2402 28.6067 13.6302 28.8767 13.1102C29.1567 12.5802 29.5367 12.1702 30.0167 11.8802C30.5067 11.5802 31.0667 11.4302 31.7067 11.4302C32.2867 11.4302 32.7867 11.5502 33.2167 11.8002C33.6467 12.0402 33.9867 12.3702 34.2267 12.8002V11.5802H37.8667V18.2302H34.2267ZM33.1667 16.5902C33.6267 16.5902 33.9767 16.4302 34.2267 16.1102V13.7202C33.9767 13.4102 33.6267 13.2502 33.1667 13.2502C32.7067 13.2502 32.3567 13.4002 32.1067 13.7102C31.8667 14.0102 31.7467 14.4102 31.7467 14.9202C31.7467 15.4202 31.8667 15.8202 32.1067 16.1302C32.3567 16.4302 32.7067 16.5902 33.1667 16.5902ZM42.5033 18.2302V14.5302H41.3433V11.5802H42.5033V9.52016L46.1433 8.35016V11.5802H47.8833V14.5302H46.1433V17.3602C46.1433 17.6502 46.2133 17.8502 46.3633 17.9602C46.5133 18.0702 46.7233 18.1202 47.0033 18.1202C47.1633 18.1202 47.3333 18.0902 47.5133 18.0402L47.8833 20.9102C47.4533 21.0502 46.9933 21.1202 46.5033 21.1202C45.3833 21.1202 44.5233 20.7802 43.9133 20.1002C43.3133 19.4202 43.0133 18.8002 43.0133 18.2302H42.5033ZM55.51 18.2302V17.0602C55.27 17.4702 54.93 17.8002 54.49 18.0402C54.06 18.2802 53.55 18.4002 52.97 18.4002C52.31 18.4002 51.74 18.2502 51.26 17.9602C50.78 17.6602 50.41 17.2502 50.14 16.7302C49.88 16.2002 49.75 15.6002 49.75 14.9202C49.75 14.2402 49.89 13.6302 50.16 13.1102C50.44 12.5802 50.82 12.1702 51.3 11.8802C51.79 11.5802 52.35 11.4302 52.99 11.4302C53.57 11.4302 54.07 11.5502 54.5 11.8002C54.93 12.0402 55.27 12.3702 55.51 12.8002V11.5802H59.15V18.2302H55.51ZM54.45 16.5902C54.91 16.5902 55.26 16.4302 55.51 16.1102V13.7202C55.26 13.4102 54.91 13.2502 54.45 13.2502C53.99 13.2502 53.64 13.4002 53.39 13.7102C53.15 14.0102 53.03 14.4102 53.03 14.9202C53.03 15.4202 53.15 15.8202 53.39 16.1302C53.64 16.4302 53.99 16.5902 54.45 16.5902ZM61.3567 18.2302V0.160156H64.9967V12.7502C65.3467 12.3302 65.7767 12.0102 66.2767 11.7802C66.7867 11.5402 67.3667 11.4302 68.0167 11.4302C69.0967 11.4302 69.9767 11.8302 70.6467 12.6402C71.3267 13.4402 71.6667 14.5502 71.6667 15.9802C71.6667 17.4002 71.3267 18.5102 70.6467 19.3202C69.9767 20.1202 69.0967 20.5202 68.0167 20.5202C67.3567 20.5202 66.7767 20.4002 66.2667 20.1602C65.7667 19.9202 65.3367 19.6002 64.9967 19.1802V18.2302H61.3567ZM66.5067 17.4702C66.8667 17.4702 67.1667 17.3702 67.4167 17.1702C67.6767 16.9602 67.8067 16.5602 67.8067 15.9802C67.8067 15.3902 67.6767 14.9802 67.4167 14.7702C67.1667 14.5602 66.8667 14.4602 66.5067 14.4602C66.1467 14.4602 65.8467 14.5602 65.5867 14.7702C65.3367 14.9802 65.2067 15.3902 65.2067 15.9802C65.2067 16.5602 65.3367 16.9602 65.5867 17.1702C65.8467 17.3702 66.1467 17.4702 66.5067 17.4702ZM74.5233 18.2302V11.5802H77.6733V12.7502C77.9233 12.3302 78.2633 12.0102 78.7133 11.7802C79.1633 11.5402 79.7033 11.4302 80.3533 11.4302H80.8933V14.8802H79.9133C79.0333 14.8802 78.4733 15.0802 78.2433 15.4802C78.0233 15.8802 77.9133 16.5602 77.9133 17.5202V18.2302H74.5233ZM82.72 18.2302V11.5802H86.36V18.2302H82.72ZM84.54 10.3702C83.99 10.3702 83.52 10.1702 83.13 9.77016C82.75 9.37016 82.55 8.89016 82.55 8.33016C82.55 7.78016 82.75 7.30016 83.13 6.90016C83.52 6.50016 83.99 6.30016 84.54 6.30016C85.08 6.30016 85.55 6.50016 85.93 6.90016C86.32 7.30016 86.51 7.78016 86.51 8.33016C86.51 8.89016 86.32 9.37016 85.93 9.77016C85.55 10.1702 85.08 10.3702 84.54 10.3702ZM88.7567 18.2302V11.5802H92.4167V12.7202C92.9067 11.8602 93.7067 11.4302 94.8067 11.4302C95.4467 11.4302 96.0167 11.5902 96.5267 11.9002L95.1067 15.0902C94.8667 14.9402 94.6067 14.8702 94.3167 14.8702C93.7367 14.8702 93.2967 15.1102 93.0067 15.5802C92.7267 16.0502 92.5767 16.7302 92.5767 17.6202V18.2302H88.7567ZM106.633 18.5702C106.183 18.8402 105.713 19.0402 105.213 19.1602C104.723 19.2802 104.223 19.3402 103.713 19.3402C102.503 19.3402 101.553 19.0402 100.863 18.4402C100.173 17.8402 99.8233 17.0302 99.8233 16.0102V16.0002C99.8233 14.9502 100.183 14.1202 100.913 13.5202C101.653 12.9102 102.663 12.6102 103.953 12.6102C104.423 12.6102 104.883 12.6502 105.343 12.7202C105.813 12.7902 106.243 12.9102 106.633 13.0902V18.5702ZM110.033 18.2302L106.703 14.1902L109.843 11.5802H105.513L102.163 14.3602L101.443 13.3402C100.673 12.2502 99.8733 11.7102 99.0433 11.7102C98.2433 11.7102 97.5533 12.0202 96.9633 12.6302C96.3833 13.2302 96.0933 14.0002 96.0933 14.9402V14.9502C96.0933 16.0302 96.4433 16.9202 97.1333 17.6202C97.8333 18.3102 98.7833 18.6602 99.9933 18.6602C101.073 18.6602 101.993 18.3802 102.763 17.8102L103.583 18.9102C103.883 19.3202 104.283 19.5302 104.773 19.5302C105.023 19.5302 105.283 19.4602 105.553 19.3302C105.823 19.2002 106.083 19.0002 106.333 18.7302L110.033 18.2302ZM112.56 16.9302C112.98 17.1502 113.48 17.2602 114.07 17.2602C114.4 17.2602 114.65 17.1802 114.81 17.0302C114.97 16.8702 115.05 16.6602 115.05 16.3902C115.05 16.2002 115.01 16.0402 114.92 15.9102C114.84 15.7702 114.69 15.6302 114.49 15.4802C114.29 15.3302 114.01 15.1702 113.67 15.0102C113.06 14.7202 112.6 14.5102 112.28 14.3802C111.96 14.2502 111.69 14.0802 111.47 13.8802C111.25 13.6802 111.08 13.4402 110.97 13.1602C110.86 12.8802 110.8 12.5602 110.8 12.2002C110.8 11.5102 111.07 10.9502 111.61 10.5302C112.16 10.1002 112.91 9.89016 113.85 9.89016C114.57 9.89016 115.22 10.0102 115.79 10.2502L115.31 12.5402C114.88 12.3302 114.4 12.2302 113.87 12.2302C113.56 12.2302 113.33 12.2902 113.19 12.4202C113.05 12.5402 112.98 12.7102 112.98 12.9402C112.98 13.1202 113.02 13.2702 113.11 13.4002C113.2 13.5302 113.34 13.6602 113.54 13.8002C113.75 13.9402 114.03 14.0902 114.39 14.2602C115.02 14.5602 115.49 14.7802 115.82 14.9202C116.15 15.0602 116.42 15.2302 116.63 15.4302C116.85 15.6302 117.02 15.8602 117.13 16.1402C117.24 16.4102 117.3 16.7302 117.3 17.0902C117.3 17.8002 117.03 18.3702 116.48 18.8002C115.93 19.2202 115.17 19.4302 114.2 19.4302C113.42 19.4302 112.72 19.3002 112.1 19.0402L112.56 16.9302Z" fill="white"/>
+                </svg>
+                
+                <div class="text-right">
+                    <div class="text-sm uppercase tracking-wider opacity-80 mb-1">Customer Enablement</div>
+                    <h1 class="text-3xl font-bold">January 2026</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Container -->
+        <div class="px-8 py-8">
+            <!-- Calendar & Trial CTAs -->
+            <div class="mb-6 flex flex-col md:flex-row gap-3 md:gap-4 justify-end">
+                <button id="download-calendar" class="btn-lava inline-flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-sm">
+                    <i class="fa-regular fa-calendar"></i>
+                    Download all events (.ics)
+                </button>
+                <a href="https://login.databricks.com/signup" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-sm border border-lava-600 text-lava-600 hover:bg-oat-medium" aria-label="Sign up for a Databricks trial">
+                    <i class="fa-regular fa-user"></i>
+                    Don't have an account? Sign up for a trial
+                </a>
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-12 bg-oat-light rounded-lg p-6">
+                <h2 class="text-2xl font-bold text-navy-800 mb-4">Your January Training Path</h2>
+                <p class="text-gray-700 mb-4">
+                    Start 2026 strong with hands-on workshops designed to help you master the Data Intelligence Platform. Whether you're just getting started or ready to deploy production AI, we've got you covered.
+                </p>
+                <p class="text-gray-700">
+                    All workshops are free, virtual and include live demos with expert-led guidance. Register today to secure your spot.
+                </p>
+            </section>
+
+            <!-- Quick Navigation -->
+            <section class="mb-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-8 w-1 bg-navy-800 rounded-full"></div>
+                    <h3 class="text-2xl font-bold text-navy-800">Quick Navigation</h3>
+                </div>
+                <div class="grid md:grid-cols-5 gap-4">
+                    <a href="#week1" class="bg-oat-light p-5 rounded-xl border-2 border-lava-600 hover:shadow-md transition-all text-center shadow-sm">
+                        <div class="text-navy-800 font-extrabold text-lg mb-1">Week 1</div>
+                        <div class="text-sm text-gray-700">January 6 to 9</div>
+                    </a>
+                    <a href="#week2" class="bg-oat-light p-5 rounded-xl border-2 border-lava-600 hover:shadow-md transition-all text-center shadow-sm">
+                        <div class="text-navy-800 font-extrabold text-lg mb-1">Week 2</div>
+                        <div class="text-sm text-gray-700">January 12 to 16</div>
+                    </a>
+                    <a href="#week3" class="bg-oat-light p-5 rounded-xl border-2 border-lava-600 hover:shadow-md transition-all text-center shadow-sm">
+                        <div class="text-navy-800 font-extrabold text-lg mb-1">Week 3 & 4</div>
+                        <div class="text-sm text-gray-700">January 20 to 30</div>
+                    </a>
+                    <a href="#bootcamps" class="bg-white p-5 rounded-xl border-2 border-navy-800 hover:border-lava-600 transition-all text-center shadow">
+                        <div class="text-navy-800 font-extrabold text-lg mb-1">Local Bootcamps</div>
+                        <div class="text-sm text-gray-700">SF • CHI • NYC • SEA</div>
+                    </a>
+                    <a href="#resources" class="bg-white p-5 rounded-xl border-2 border-navy-800 hover:border-lava-600 transition-all text-center shadow">
+                        <div class="text-navy-800 font-extrabold text-lg mb-1">Additional Resources</div>
+                        <div class="text-sm text-gray-700">Docs, Academy, Community</div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- WEEK 1 WORKSHOPS -->
+            <section id="week1" class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-8 w-1 bg-navy-800 rounded-full"></div>
+                    <h3 class="text-2xl font-bold text-navy-800">Week 1: January 6 to 9</h3>
+                </div>
+
+                <!-- Workshop 1: Embedded Analytics -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                ANALYTICS
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Embedded Analytics with Databricks AI/BI</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Tuesday, January 6, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Get hands-on guidance on embedding Databricks AI/BI Dashboards and Genie into internal and external applications. You'll learn how to integrate powerful analytics and conversational AI capabilities, enabling users to make informed decisions directly within their workflow.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">What you'll learn:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Overview of embedded analytics with Databricks AI/BI</li>
+                            <li>• Embedding dashboards with iframe-based and token-based methods</li>
+                            <li>• Embedding AI/BI Genie with the Genie Conversational APIs</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY260527-TR-EmbeddedAnalyticswithDatabricksAIBI" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 2: Agent Bricks -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                GENERATIVE AI
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Production-Ready Agents on Databricks</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Wednesday, January 7, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 2 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Discover how to build, optimize and deploy high-quality AI agent systems using Databricks Agent Bricks and the Mosaic AI Agent Framework. You'll learn how to deliver real business outcomes quickly, efficiently and securely.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">What you'll experience:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Agent Bricks fundamentals for creating powerful AI agents without coding</li>
+                            <li>• End-to-end productionization from model selection to deployment and monitoring</li>
+                            <li>• Seamless integration with Unity Catalog, MLflow and Databricks security features</li>
+                        </ul>
+                        <div class="mt-3 text-sm text-gray-600 italic">
+                            <i class="fa-solid fa-info-circle mr-2"></i>Prerequisite: Unity Catalog required
+                        </div>
+                    </div>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 3: Building AI Systems -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                AI SYSTEMS
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Building AI Systems with Databricks: From Concept to Deployment</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Thursday, January 8, 2026 at 9:00 AM to 10:30 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 90 minutes
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Embark on a journey into AI with the Databricks platform, where governed data meets cutting-edge AI innovation. You'll learn how to enhance traditional machine learning models by integrating generative AI capabilities, such as agent workflows, to unlock new levels of intelligence and automation.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">You'll get hands-on experience with:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Vector search within Databricks to enhance your generative AI applications</li>
+                            <li>• Embedding models to transform data for generative models</li>
+                            <li>• AI Playground to experiment with foundational models</li>
+                            <li>• Pulling open-source foundational models into your workflows</li>
+                            <li>• Governing all your AI assets using Unity Catalog</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY260108-TR-Building-AI-Systems-Workshop-AMER" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 4: Intro to Databricks -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-navy-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                GETTING STARTED
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Intro to Databricks</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Thursday, January 8, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Designed for users who are completely new to the platform or have minimal experience. You'll get an introductory tour of the platform and see how it can simplify and accelerate your data projects. Perfect for understanding the basics of what Databricks is and why organizations adopt it.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">Workshop highlights:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• What is Databricks and why use it</li>
+                            <li>• Hands-on platform walkthrough and key features</li>
+                            <li>• Basic querying, transformations and simple visualizations</li>
+                            <li>• Tips and tricks to make your life easier</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 5: Lakebase -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                DATA ENGINEERING
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Lakebase: Fully Managed Postgres for the Lakehouse</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Friday, January 9, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Learn how Lakebase is a fully managed serverless, scalable and resilient Postgres database that offers low-latency reads and writes to unlock operational and transactional use cases. Completely integrated with the Data Intelligence Platform with access to the same tables that power your analytical and AI workloads.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">Use cases you'll explore:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Reverse ETL for syncing curated data into operational systems</li>
+                            <li>• Real-time data serving for dashboards and apps with ultra-low latency</li>
+                            <li>• Online feature store for serving featurized data to models</li>
+                            <li>• Agent memory for storing state for AI agents</li>
+                            <li>• Data store for applications and real-time geospatial use cases</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- WEEK 2 WORKSHOPS -->
+            <section id="week2" class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-8 w-1 bg-navy-800 rounded-full"></div>
+                    <h3 class="text-2xl font-bold text-navy-800">Week 2: January 12 to 16</h3>
+                </div>
+
+                <!-- Workshop 6: ETL Lakeflow -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                DATA ENGINEERING
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">ETL: Lakeflow Declarative Pipelines & Structured Streaming</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Monday, January 12, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Learn best practices for developing and deploying an ETL pipeline with varied latency from continuous ingestion to hourly incremental loads. You'll run hands-on examples of creating a medallion architecture using both Spark Structured Streaming and Lakeflow Declarative Pipelines.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">During the hands-on portion:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Ingest streaming data, refine it and serve it for downstream use cases</li>
+                            <li>• Spark syntax for incremental data processing</li>
+                            <li>• How checkpoints work and monitoring streaming pipelines</li>
+                            <li>• Common table configurations and scheduling with Lakeflow Jobs</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 7: End-to-End AI -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                MACHINE LEARNING
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">End-to-End AI on Databricks</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Tuesday, January 13, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Walk through an end-to-end AI solution on Databricks. You'll start with the AI development environment with real-time collaboration and AI assistance, then move through data prep at scale, feature development, model training, deployment and monitoring. Get a reusable template to jump-start your journey of putting models into production.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">You'll explore:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• AI development environment with real-time collaboration</li>
+                            <li>• Data prep at scale with pandas on Apache Spark™</li>
+                            <li>• Feature store for a single source of truth</li>
+                            <li>• Glass box AutoML for rapid ML prototyping</li>
+                            <li>• Deployment to Mosaic Model Serving and Lakehouse Monitoring</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-End-to-EndAI" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 8: Intro to Databricks (Second Session) -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-navy-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                GETTING STARTED
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Intro to Databricks</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Wednesday, January 14, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Another session of our introductory workshop for those who are completely new to the platform. Perfect if you missed the first session or want to bring along colleagues who are just getting started with Databricks.
+                    </p>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 9: Unity Catalog -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                GOVERNANCE
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Unified Governance with Unity Catalog</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Friday, January 16, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Get hands-on guidance using Unity Catalog, the unified governance solution for all data and AI assets. You'll learn how it works with your existing data catalogs and storage solutions to build a future-proof governance model, and see how to upgrade your tables to include these benefits.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">Workshop topics:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Unified data governance across your lakehouse</li>
+                            <li>• Centralized metadata and user management</li>
+                            <li>• Centralized data access controls</li>
+                            <li>• Identity federation</li>
+                            <li>• Data exploration and data lineage</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- WEEK 3 & 4 WORKSHOPS -->
+            <section id="week3" class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-8 w-1 bg-navy-800 rounded-full"></div>
+                    <h3 class="text-2xl font-bold text-navy-800">Week 3 & 4: January 20 to 30</h3>
+                </div>
+
+                <!-- Workshop 10: Databricks SQL -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                SQL & ANALYTICS
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Databricks SQL and Serverless</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Tuesday, January 20, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Learn about Delta Lake, Databricks SQL and serverless offerings. You'll discover how to operate a lakehouse architecture that delivers data warehouse performance at data lake economics with up to 12x better price performance than traditional cloud data warehouses.
+                    </p>
+                    <div class="bg-oat-light rounded p-4 mb-4">
+                        <div class="font-semibold text-navy-800 mb-2">What you'll cover:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Overview of the Data Intelligence Platform and how Databricks SQL fits in</li>
+                            <li>• Benefits of Delta in the modern data ecosystem</li>
+                            <li>• Managing and monitoring compute resources, data access and users</li>
+                            <li>• Using Databricks SQL to query your data lake with built-in tools</li>
+                            <li>• New serverless offerings and future roadmap</li>
+                        </ul>
+                    </div>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-SQLandDelta" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Featured Event: Data + AI World Tour Virtual -->
+                <div class="bg-gradient-to-r from-navy-800 to-navy-900 text-white p-6 rounded-lg shadow-lg mb-6">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-lava-600 rounded-full p-4">
+                                <i class="fa-solid fa-video text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                FEATURED EVENT
+                            </div>
+                            <h4 class="font-bold text-2xl mb-2">Data + AI World Tour Virtual</h4>
+                            <div class="text-sm opacity-90 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Wednesday, January 21, 2026 at 9:00 AM PT
+                            </div>
+                            <p class="mb-4 opacity-90">
+                                Explore the latest innovations in data and AI on your schedule. Watch key sessions featuring the latest updates to the Data Intelligence Platform, including product demos, feature launches, AI advancements and real-world use cases from regional customers.
+                            </p>
+                            <div class="bg-white bg-opacity-10 rounded p-4 mb-4">
+                                <div class="font-semibold mb-2">Agenda highlights:</div>
+                                <ul class="text-sm space-y-1 opacity-90">
+                                    <li>• 9:00 AM - Opening remarks and Databricks keynote</li>
+                                    <li>• 9:40 AM - Customer highlights</li>
+                                    <li>• 10:30 AM - Self-guided breakout sessions</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white bg-opacity-10 rounded p-4 mb-4">
+                                <div class="font-semibold mb-2">Self-guided breakout sessions include:</div>
+                                <ul class="text-sm space-y-1 opacity-90">
+                                    <li>• Unity Catalog: From foundations to best practices</li>
+                                    <li>• Building production-ready AI and multi-agent systems with Agent Bricks</li>
+                                    <li>• Introducing Lakeflow: The future of data engineering on Databricks</li>
+                                    <li>• Lakebase: Fully managed Postgres for the lakehouse</li>
+                                    <li>• Databricks SQL: Getting started and what's new with live demos</li>
+                                    <li>• Databricks Apps: Turning data and AI into practical applications</li>
+                                    <li>• And more</li>
+                                </ul>
+                            </div>
+                            <a href="https://events.databricks.com/FY260121-EV-DAIWT-Virtual-AMER" class="inline-block bg-lava-600 hover:bg-lava-500 px-6 py-3 rounded-lg font-bold text-sm transition-colors">
+                                Register for the virtual event <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workshop 11: Agent Bricks (Second Session) -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                GENERATIVE AI
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Production-Ready Agents on Databricks</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Wednesday, January 21, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 2 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Another session of our Agent Bricks workshop. Perfect if you missed the earlier session or want to dive deeper into building production-ready AI agent systems.
+                    </p>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 12: Lakebase (Second Session) -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                DATA ENGINEERING
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Lakebase: Fully Managed Postgres for the Lakehouse</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Friday, January 23, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Another session to learn about Lakebase and how it unlocks operational and transactional use cases with low-latency reads and writes.
+                    </p>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 13: ETL Lakeflow (Second Session) -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                DATA ENGINEERING
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">ETL: Lakeflow Declarative Pipelines & Structured Streaming</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Monday, January 26, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Another opportunity to learn best practices for developing and deploying ETL pipelines with hands-on examples.
+                    </p>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 14: Embedded Analytics (Second Session) -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                ANALYTICS
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Embedded Analytics with Databricks AI/BI</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Tuesday, January 27, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Final session for January on embedding Databricks AI/BI Dashboards and Genie into your applications.
+                    </p>
+                    <a href="https://events.databricks.com/FY260527-TR-EmbeddedAnalyticswithDatabricksAIBI" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Workshop 15: Unity Catalog (Second Session) -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex-1">
+                            <div class="inline-block bg-lava-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                                GOVERNANCE
+                            </div>
+                            <h4 class="font-bold text-xl text-navy-800 mb-2">Unified Governance with Unity Catalog</h4>
+                            <div class="text-sm text-gray-600 mb-3">
+                                <i class="fa-regular fa-calendar mr-2"></i>Friday, January 30, 2026 at 11:00 AM PT
+                            </div>
+                            <div class="text-sm text-gray-600 mb-4">
+                                <i class="fa-regular fa-clock mr-2"></i>Duration: 1.5 hours
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Final workshop of the month focused on unified governance for all your data and AI assets.
+                    </p>
+                    <a href="https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">
+                        Register now <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Local Bootcamps -->
+            <section id="bootcamps" class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-8 w-1 bg-navy-800 rounded-full"></div>
+                    <h3 class="text-2xl font-bold text-navy-800">Local Data + AI Pioneer Bootcamps</h3>
+                </div>
+                <p class="text-gray-700 mb-6">
+                    Join an in-person, hands-on bootcamp near you. Learn Databricks AI/BI and advanced AI workflows with expert guidance. Seats are limited.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- SF -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="inline-block bg-navy-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">IN-PERSON BOOTCAMP</div>
+                        <h4 class="font-bold text-xl text-navy-800 mb-2">Data + AI Pioneer Bootcamp — San Francisco</h4>
+                        <div class="text-sm text-gray-600 mb-2"><i class="fa-regular fa-calendar mr-2"></i>January 13, 2026</div>
+                        <div class="text-sm text-gray-600 mb-4"><i class="fa-solid fa-location-dot mr-2"></i>San Francisco, CA</div>
+                        <a href="https://events.databricks.com/FY260113-TR-Data-AI-Pioneer-Bootcamp-SF/registration" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">Register <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                    <!-- CHI -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="inline-block bg-navy-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">IN-PERSON BOOTCAMP</div>
+                        <h4 class="font-bold text-xl text-navy-800 mb-2">Data + AI Pioneer Bootcamp — Chicago</h4>
+                        <div class="text-sm text-gray-600 mb-2"><i class="fa-regular fa-calendar mr-2"></i>January 14, 2026</div>
+                        <div class="text-sm text-gray-600 mb-4"><i class="fa-solid fa-location-dot mr-2"></i>Chicago, IL</div>
+                        <a href="https://events.databricks.com/FY260114-TR-Data-AI-Pioneer-Bootcamp-CHI/registration" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">Register <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                    <!-- NYC -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="inline-block bg-navy-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">IN-PERSON BOOTCAMP</div>
+                        <h4 class="font-bold text-xl text-navy-800 mb-2">Data + AI Pioneer Bootcamp — New York City</h4>
+                        <div class="text-sm text-gray-600 mb-2"><i class="fa-regular fa-calendar mr-2"></i>January 21, 2026</div>
+                        <div class="text-sm text-gray-600 mb-4"><i class="fa-solid fa-location-dot mr-2"></i>New York, NY</div>
+                        <a href="https://events.databricks.com/FY260121-TR-Data-AI-Pioneer-Bootcamp-NYC/registration" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">Register <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                    <!-- SEA -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="inline-block bg-navy-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">IN-PERSON BOOTCAMP</div>
+                        <h4 class="font-bold text-xl text-navy-800 mb-2">Data + AI Pioneer Bootcamp — Seattle</h4>
+                        <div class="text-sm text-gray-600 mb-2"><i class="fa-regular fa-calendar mr-2"></i>January 21, 2026</div>
+                        <div class="text-sm text-gray-600 mb-4"><i class="fa-solid fa-location-dot mr-2"></i>Seattle, WA</div>
+                        <a href="https://events.databricks.com/FY260121-TR-Data-AI-Pioneer-Bootcamp-SEA/registration" class="btn-lava inline-block px-6 py-3 rounded-lg font-bold text-sm">Register <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+
+                <!-- About the Bootcamps -->
+                <div class="mt-8 bg-oat-light rounded-lg p-6">
+                    <h4 class="font-bold text-navy-800 mb-3">About the Bootcamps</h4>
+                    <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
+                        <div>
+                            <h5 class="font-semibold text-navy-800 mb-2">Data Pioneer Bootcamp</h5>
+                            <p class="mb-3">Today’s businesses need more than just data—they need real-time insights that drive action. In this in-person bootcamp, you’ll get hands-on experience with Databricks AI/BI, learning how to seamlessly explore, analyze, and visualize your data with a Databricks Warehouse. With guidance from Databricks experts, you’ll see firsthand how an integrated approach to business intelligence can help you make faster, more informed decisions—all within a single, unified platform.</p>
+                            <div class="font-semibold text-navy-800 mb-2">During this bootcamp, you will:</div>
+                            <ul class="space-y-1">
+                                <li>• Explore and organize your data using Unity Catalog</li>
+                                <li>• Query and analyze your data with a Databricks Warehouse</li>
+                                <li>• Build interactive AI/BI Dashboards to visualize key insights</li>
+                                <li>• Go beyond dashboards with AI/BI Genie to interact in natural language</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-navy-800 mb-2">AI Pioneer Bootcamp</h5>
+                            <p class="mb-3">Unlock the power of AI with Databricks in this hands-on bootcamp that dives into GenAI, Advanced Machine Learning (ML), and MLOps/LLMOps. Equip yourself to build, deploy, and scale sophisticated AI models — all within the Databricks Platform. With expert guidance, you’ll explore cutting-edge AI techniques and learn how to integrate the entire AI lifecycle into your systems.</p>
+                            <div class="font-semibold text-navy-800 mb-2">During this bootcamp, you will:</div>
+                            <ul class="space-y-1">
+                                <li>• Design robust, autonomous AI Agent Systems with the Agent Framework</li>
+                                <li>• Use Agent Evaluation to optimize performance with custom metrics</li>
+                                <li>• Streamline deployment via Batch Inference and Model Serving</li>
+                                <li>• Utilize AI Gateway to simplify API management across models</li>
+                                <li>• Maximize observability, security and governance with Unity Catalog</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Additional Resources -->
+            <section id="resources" class="mb-12 bg-oat-light rounded-lg p-6">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-8 w-1 bg-navy-800 rounded-full"></div>
+                    <h3 class="text-2xl font-bold text-navy-800">Additional Resources</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-navy-800 mb-3">Self-paced learning</h4>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>
+                                <a href="https://www.databricks.com/learn/training/login" class="text-lava-600 hover:text-navy-800 font-semibold">
+                                    Databricks Academy <i class="fa-solid fa-arrow-right ml-1"></i>
+                                </a>
+                                <p class="text-xs text-gray-600 mt-1">Browse our full catalog of training and certification pathways</p>
+                            </li>
+                            <li>
+                                <a href="https://docs.databricks.com" class="text-lava-600 hover:text-navy-800 font-semibold">
+                                    Documentation <i class="fa-solid fa-arrow-right ml-1"></i>
+                                </a>
+                                <p class="text-xs text-gray-600 mt-1">Comprehensive guides and API references</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-navy-800 mb-3">Community & support</h4>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>
+                                <a href="https://community.databricks.com" class="text-lava-600 hover:text-navy-800 font-semibold">
+                                    Databricks Community <i class="fa-solid fa-arrow-right ml-1"></i>
+                                </a>
+                                <p class="text-xs text-gray-600 mt-1">Connect with peers, ask questions and find local meetups</p>
+                            </li>
+                            <li>
+                                <a href="https://www.databricks.com/solutions/accelerators" class="text-lava-600 hover:text-navy-800 font-semibold">
+                                    Solution Accelerators <i class="fa-solid fa-arrow-right ml-1"></i>
+                                </a>
+                                <p class="text-xs text-gray-600 mt-1">Pre-packaged solutions to accelerate your path to production</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-navy-900 text-white p-8 mt-8 text-center">
+            <img src="https://cdn.brandfetch.io/idSUrLOWbH/theme/light/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668081623507" alt="Databricks logo" class="h-6 w-auto mx-auto mb-6 opacity-80" loading="lazy" />
+            <p class="text-sm opacity-60">
+                © Databricks 2026. All rights reserved.<br>
+                160 Spear Street, 13th Floor, San Francisco, CA 94105
+            </p>
+            <div class="mt-4 space-x-4">
+                <a href="https://databricks.com/privacypolicy" class="text-xs hover:text-lava-600 transition-colors">Privacy Policy</a>
+                <span class="text-xs opacity-40">|</span>
+                <a href="https://databricks.com/terms-of-use" class="text-xs hover:text-lava-600 transition-colors">Terms of Use</a>
+                
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+    // Generate and download ICS calendar with all newsletter events
+    (function(){
+        const events = [
+            // Week 1
+            {title: 'Embedded Analytics with Databricks AI/BI', date: '2026-01-06', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY260527-TR-EmbeddedAnalyticswithDatabricksAIBI'},
+            {title: 'Production-Ready Agents on Databricks', date: '2026-01-07', start: '11:00', end: '13:00', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI'},
+            {title: 'Building AI Systems with Databricks: From Concept to Deployment', date: '2026-01-08', start: '09:00', end: '10:30', url: 'https://events.databricks.com/FY260108-TR-Building-AI-Systems-Workshop-AMER'},
+            {title: 'Intro to Databricks', date: '2026-01-08', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta'},
+            {title: 'Lakebase: Fully Managed Postgres for the Lakehouse', date: '2026-01-09', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction'},
+            // Week 2
+            {title: 'ETL: Lakeflow Declarative Pipelines & Structured Streaming', date: '2026-01-12', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables'},
+            {title: 'End-to-End AI on Databricks', date: '2026-01-13', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-End-to-EndAI'},
+            {title: 'Intro to Databricks', date: '2026-01-14', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta'},
+            {title: 'Unified Governance with Unity Catalog', date: '2026-01-16', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC'},
+            // Week 3 & 4
+            {title: 'Databricks SQL and Serverless', date: '2026-01-20', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-SQLandDelta'},
+            {title: 'Data + AI World Tour Virtual', date: '2026-01-21', start: '09:00', end: '11:00', url: 'https://events.databricks.com/FY260121-EV-DAIWT-Virtual-AMER'},
+            {title: 'Production-Ready Agents on Databricks', date: '2026-01-21', start: '11:00', end: '13:00', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI'},
+            {title: 'Lakebase: Fully Managed Postgres for the Lakehouse', date: '2026-01-23', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction'},
+            {title: 'ETL: Lakeflow Declarative Pipelines & Structured Streaming', date: '2026-01-26', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables'},
+            {title: 'Embedded Analytics with Databricks AI/BI', date: '2026-01-27', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY260527-TR-EmbeddedAnalyticswithDatabricksAIBI'},
+            {title: 'Unified Governance with Unity Catalog', date: '2026-01-30', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC'},
+            // Local Bootcamps (times TBD -> added as all-day placeholders)
+            {title: 'Data + AI Pioneer Bootcamp — San Francisco', date: '2026-01-13', url: 'https://events.databricks.com/FY260113-TR-Data-AI-Pioneer-Bootcamp-SF/registration', location: 'San Francisco, CA'},
+            {title: 'Data + AI Pioneer Bootcamp — Chicago', date: '2026-01-14', url: 'https://events.databricks.com/FY260114-TR-Data-AI-Pioneer-Bootcamp-CHI/registration', location: 'Chicago, IL'},
+            {title: 'Data + AI Pioneer Bootcamp — New York City', date: '2026-01-21', url: 'https://events.databricks.com/FY260121-TR-Data-AI-Pioneer-Bootcamp-NYC/registration', location: 'New York, NY'},
+            {title: 'Data + AI Pioneer Bootcamp — Seattle', date: '2026-01-21', url: 'https://events.databricks.com/FY260121-TR-Data-AI-Pioneer-Bootcamp-SEA/registration', location: 'Seattle, WA'}
+        ];
+
+        function fmtLocal(dateStr){
+            return dateStr.replaceAll('-', '');
+        }
+        function fmtTime(time){
+            return time.replace(':','') + '00';
+        }
+        function toICSDateTime(d, t){
+            return fmtLocal(d) + 'T' + fmtTime(t);
+        }
+
+        function escape(text){
+            return String(text).replace(/[,;]/g, m => (m === ',' ? '\\,' : '\\;')).replace(/\n/g,'\\n');
+        }
+
+        function nextDateStr(dateStr){
+            const d = new Date(dateStr + 'T00:00:00');
+            d.setDate(d.getDate() + 1);
+            return d.toISOString().slice(0,10);
+        }
+
+        function buildICS(){
+            const lines = [];
+            lines.push('BEGIN:VCALENDAR');
+            lines.push('VERSION:2.0');
+            lines.push('PRODID:-//Databricks//January Enablement Newsletter//EN');
+            lines.push('CALSCALE:GREGORIAN');
+            lines.push('METHOD:PUBLISH');
+            lines.push('BEGIN:VTIMEZONE');
+            lines.push('TZID:America/Los_Angeles');
+            lines.push('X-LIC-LOCATION:America/Los_Angeles');
+            lines.push('BEGIN:STANDARD');
+            lines.push('DTSTART:19701101T020000');
+            lines.push('TZOFFSETFROM:-0700');
+            lines.push('TZOFFSETTO:-0800');
+            lines.push('RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU');
+            lines.push('END:STANDARD');
+            lines.push('BEGIN:DAYLIGHT');
+            lines.push('DTSTART:19700308T020000');
+            lines.push('TZOFFSETFROM:-0800');
+            lines.push('TZOFFSETTO:-0700');
+            lines.push('RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU');
+            lines.push('END:DAYLIGHT');
+            lines.push('END:VTIMEZONE');
+
+            const now = new Date();
+            const stamp = now.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+            events.forEach((ev, idx) => {
+                const uid = `dbx-jan-2026-${idx}@databricks.com`;
+                lines.push('BEGIN:VEVENT');
+                lines.push(`UID:${uid}`);
+                lines.push(`DTSTAMP:${stamp}`);
+                if (ev.start && ev.end) {
+                    lines.push(`DTSTART;TZID=America/Los_Angeles:${toICSDateTime(ev.date, ev.start)}`);
+                    lines.push(`DTEND;TZID=America/Los_Angeles:${toICSDateTime(ev.date, ev.end)}`);
+                } else {
+                    // All-day placeholder event
+                    lines.push(`DTSTART;VALUE=DATE:${fmtLocal(ev.date)}`);
+                    lines.push(`DTEND;VALUE=DATE:${fmtLocal(nextDateStr(ev.date))}`);
+                }
+                lines.push(`SUMMARY:${escape(ev.title)}`);
+                lines.push(`LOCATION:${escape(ev.location || 'Virtual')}`);
+                if (ev.url) lines.push(`URL:${ev.url}`);
+                lines.push('END:VEVENT');
+            });
+
+            lines.push('END:VCALENDAR');
+            return lines.join('\r\n');
+        }
+
+        function downloadICS(){
+            const ics = buildICS();
+            const blob = new Blob([ics], {type: 'text/calendar'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Databricks_January_2026_Workshops.ics';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+        }
+
+        const btn = document.getElementById('download-calendar');
+        if (btn) btn.addEventListener('click', downloadICS);
+    })();
+    </script>
+
+</body>
+</html>
