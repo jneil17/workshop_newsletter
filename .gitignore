@@ -1,0 +1,21 @@
+# IDE and OS files
+.DS_Store
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary files
+.tmp/
+temp/
+
+# AWS credentials (never commit these)
+.aws/
+aws-credentials.txt
+
+# Backup files
+*.bak
+*.backup
