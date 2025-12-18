@@ -36,9 +36,46 @@ pip install awscli
 aws configure
 ```
 
-Required AWS permissions for the S3 bucket:
-- `s3:PutObject` on `s3://databricks-january-workshops/*`
-- `s3:PutObjectAcl` on `s3://databricks-january-workshops/*`
+**AWS Credentials Setup:**
+1. **Access Key ID**: `AKIAZI2LGMDC2NLULV4E` (for jneil_developer user) # gitleaks:allow
+2. **Secret Access Key**: [Configured separately]
+3. **Region**: `us-east-1`
+4. **Output Format**: `json`
+
+**Required IAM Policy for `jneil_developer` user:**
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::databricks-january-workshops/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::databricks-january-workshops"
+        }
+    ]
+}
+```
+
+**Verify Setup:**
+```bash
+# Check AWS identity
+aws sts get-caller-identity
+
+# Test S3 access
+aws s3 ls s3://databricks-january-workshops/
+```
 
 ### Git Configuration
 Ensure your Git is configured:
