@@ -86,15 +86,25 @@
         <!-- Content Container -->
         <div class="px-8 py-8">
             <!-- Calendar & Trial CTAs -->
-            <div class="mb-6 flex flex-col md:flex-row gap-3 md:gap-4 justify-end">
-                <button id="download-calendar" class="btn-lava inline-flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-sm">
-                    <i class="fa-regular fa-calendar"></i>
-                    Download all events (.ics)
-                </button>
-                <a href="https://login.databricks.com/signup" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-sm border border-lava-600 text-lava-600 hover:bg-oat-medium" aria-label="Sign up for a Databricks trial">
-                    <i class="fa-regular fa-user"></i>
-                    Don't have an account? Sign up for a trial
-                </a>
+            <div class="mb-6 flex flex-col gap-6">
+                <!-- Google Calendar Embed -->
+                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-navy-800 mb-4 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar text-lava-600"></i>
+                        January 2026 Workshop Calendar
+                    </h3>
+                    <div class="w-full overflow-hidden rounded-lg">
+                        <iframe src="https://calendar.google.com/calendar/embed?src=c_779fc1659357328eadc3f875c0cf022f28fa77c77ace313848f36461c4ee1882%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no" class="w-full"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Trial CTA -->
+                <div class="text-center">
+                    <a href="https://login.databricks.com/signup" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-sm border border-lava-600 text-lava-600 hover:bg-oat-medium" aria-label="Sign up for a Databricks trial">
+                        <i class="fa-regular fa-user"></i>
+                        Don't have an account? Sign up for a trial
+                    </a>
+                </div>
             </div>
 
             <!-- Introduction -->
@@ -794,125 +804,6 @@
         </footer>
 
     </main>
-
-    <script>
-    // Generate and download ICS calendar with all newsletter events
-    (function(){
-        const events = [
-            // Week 1
-            {title: 'Embedded Analytics with Databricks AI/BI', date: '2026-01-06', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY260527-TR-EmbeddedAnalyticswithDatabricksAIBI'},
-            {title: 'Production-Ready Agents on Databricks', date: '2026-01-07', start: '11:00', end: '13:00', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI'},
-            {title: 'Building AI Systems with Databricks: From Concept to Deployment', date: '2026-01-08', start: '09:00', end: '10:30', url: 'https://events.databricks.com/FY260108-TR-Building-AI-Systems-Workshop-AMER'},
-            {title: 'Intro to Databricks', date: '2026-01-08', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta'},
-            {title: 'Lakebase: Fully Managed Postgres for the Lakehouse', date: '2026-01-09', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction'},
-            // Week 2
-            {title: 'ETL: Lakeflow Declarative Pipelines & Structured Streaming', date: '2026-01-12', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables'},
-            {title: 'End-to-End AI on Databricks', date: '2026-01-13', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-End-to-EndAI'},
-            {title: 'Intro to Databricks', date: '2026-01-14', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta'},
-            {title: 'Unified Governance with Unity Catalog', date: '2026-01-16', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC'},
-            // Week 3 & 4
-            {title: 'Databricks SQL and Serverless', date: '2026-01-20', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-SQLandDelta'},
-            {title: 'Data + AI World Tour Virtual', date: '2026-01-21', start: '09:00', end: '11:00', url: 'https://events.databricks.com/FY260121-EV-DAIWT-Virtual-AMER'},
-            {title: 'Production-Ready Agents on Databricks', date: '2026-01-21', start: '11:00', end: '13:00', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI'},
-            {title: 'Lakebase: Fully Managed Postgres for the Lakehouse', date: '2026-01-23', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction'},
-            {title: 'ETL: Lakeflow Declarative Pipelines & Structured Streaming', date: '2026-01-26', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables'},
-            {title: 'Embedded Analytics with Databricks AI/BI', date: '2026-01-27', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY260527-TR-EmbeddedAnalyticswithDatabricksAIBI'},
-            {title: 'Unified Governance with Unity Catalog', date: '2026-01-30', start: '11:00', end: '12:30', url: 'https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC'},
-            // Local Bootcamps (times TBD -> added as all-day placeholders)
-            {title: 'Data + AI Pioneer Bootcamp — San Francisco', date: '2026-01-13', url: 'https://events.databricks.com/FY260113-TR-Data-AI-Pioneer-Bootcamp-SF/registration', location: 'San Francisco, CA'},
-            {title: 'Data + AI Pioneer Bootcamp — Chicago', date: '2026-01-14', url: 'https://events.databricks.com/FY260114-TR-Data-AI-Pioneer-Bootcamp-CHI/registration', location: 'Chicago, IL'},
-            {title: 'Data + AI Pioneer Bootcamp — New York City', date: '2026-01-21', url: 'https://events.databricks.com/FY260121-TR-Data-AI-Pioneer-Bootcamp-NYC/registration', location: 'New York, NY'},
-            {title: 'Data + AI Pioneer Bootcamp — Seattle', date: '2026-01-21', url: 'https://events.databricks.com/FY260121-TR-Data-AI-Pioneer-Bootcamp-SEA/registration', location: 'Seattle, WA'}
-        ];
-
-        function fmtLocal(dateStr){
-            return dateStr.replaceAll('-', '');
-        }
-        function fmtTime(time){
-            return time.replace(':','') + '00';
-        }
-        function toICSDateTime(d, t){
-            return fmtLocal(d) + 'T' + fmtTime(t);
-        }
-
-        function escape(text){
-            return String(text).replace(/[,;]/g, m => (m === ',' ? '\\,' : '\\;')).replace(/\n/g,'\\n');
-        }
-
-        function nextDateStr(dateStr){
-            const d = new Date(dateStr + 'T00:00:00');
-            d.setDate(d.getDate() + 1);
-            return d.toISOString().slice(0,10);
-        }
-
-        function buildICS(){
-            const lines = [];
-            lines.push('BEGIN:VCALENDAR');
-            lines.push('VERSION:2.0');
-            lines.push('PRODID:-//Databricks//January Enablement Newsletter//EN');
-            lines.push('CALSCALE:GREGORIAN');
-            lines.push('METHOD:PUBLISH');
-            lines.push('BEGIN:VTIMEZONE');
-            lines.push('TZID:America/Los_Angeles');
-            lines.push('X-LIC-LOCATION:America/Los_Angeles');
-            lines.push('BEGIN:STANDARD');
-            lines.push('DTSTART:19701101T020000');
-            lines.push('TZOFFSETFROM:-0700');
-            lines.push('TZOFFSETTO:-0800');
-            lines.push('RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU');
-            lines.push('END:STANDARD');
-            lines.push('BEGIN:DAYLIGHT');
-            lines.push('DTSTART:19700308T020000');
-            lines.push('TZOFFSETFROM:-0800');
-            lines.push('TZOFFSETTO:-0700');
-            lines.push('RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU');
-            lines.push('END:DAYLIGHT');
-            lines.push('END:VTIMEZONE');
-
-            const now = new Date();
-            const stamp = now.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-            events.forEach((ev, idx) => {
-                const uid = `dbx-jan-2026-${idx}@databricks.com`;
-                lines.push('BEGIN:VEVENT');
-                lines.push(`UID:${uid}`);
-                lines.push(`DTSTAMP:${stamp}`);
-                if (ev.start && ev.end) {
-                    lines.push(`DTSTART;TZID=America/Los_Angeles:${toICSDateTime(ev.date, ev.start)}`);
-                    lines.push(`DTEND;TZID=America/Los_Angeles:${toICSDateTime(ev.date, ev.end)}`);
-                } else {
-                    // All-day placeholder event
-                    lines.push(`DTSTART;VALUE=DATE:${fmtLocal(ev.date)}`);
-                    lines.push(`DTEND;VALUE=DATE:${fmtLocal(nextDateStr(ev.date))}`);
-                }
-                lines.push(`SUMMARY:${escape(ev.title)}`);
-                lines.push(`LOCATION:${escape(ev.location || 'Virtual')}`);
-                if (ev.url) lines.push(`URL:${ev.url}`);
-                lines.push('END:VEVENT');
-            });
-
-            lines.push('END:VCALENDAR');
-            return lines.join('\r\n');
-        }
-
-        function downloadICS(){
-            const ics = buildICS();
-            const blob = new Blob([ics], {type: 'text/calendar'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Databricks_January_2026_Workshops.ics';
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 0);
-        }
-
-        const btn = document.getElementById('download-calendar');
-        if (btn) btn.addEventListener('click', downloadICS);
-    })();
-    </script>
 
 </body>
 </html>
