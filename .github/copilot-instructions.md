@@ -3,10 +3,11 @@
 ## Project Overview
 This is a **monthly newsletter deployment system** for Databricks Customer Enablement. The core workflow is:
 1. Edit monthly newsletter file (e.g., `February_Enablement_Newsletter.html`)
-2. Run `./deploy-new.sh` to deploy changes to S3 and backup to GitHub  
-3. Newsletter goes live at https://databricks-monthly-workshops-newsletter.s3.us-east-1.amazonaws.com/February_Enablement_Newsletter.html
+2. Commit and push changes to GitHub
+3. AWS Amplify automatically deploys from git repository
+4. Newsletter goes live via Amplify hosting
 
-**Evolution**: System upgraded from January-specific to reusable monthly infrastructure with generic bucket naming.
+**Evolution**: System upgraded from manual S3 deployment to automated AWS Amplify deployment with git integration.
 
 ## Key Architecture
 
@@ -23,20 +24,18 @@ This is a **monthly newsletter deployment system** for Databricks Customer Enabl
 - **Regional Events**: Grid-based layout with clickable registration links and location details
 
 ### Deployment Pipeline
-- `deploy.sh` - Original January-specific deployment script 
-- `deploy-new.sh` - **Enhanced generic deployment script** for any monthly newsletter
-- **Critical order**: Git commit → S3 bucket creation → S3 upload → GitHub push
-- Built-in validation: checks AWS CLI, file existence, and Git state
-- Auto-detects newsletter filename, supports bucket auto-creation
-- Colorized output with emoji for clear status feedback
+- **Automatic Deployment**: AWS Amplify connected to GitHub repository
+- **Workflow**: Edit files → Git commit → Git push → Amplify auto-deploys
+- **Legacy Scripts**: `deploy.sh` and `deploy-new.sh` (no longer needed with Amplify)
+- **Repository**: https://github.com/jneil17/workshop_newsletter
+- Built-in CI/CD with Amplify's build and hosting infrastructure
 
 ### AWS Integration
-- **Current Target**: `s3://databricks-january-workshops/` bucket (legacy)
-- **New Target**: `s3://databricks-monthly-workshops-newsletter/` bucket (reusable for all months)
-- **Auth**: `jneil_developer` IAM user with limited S3 permissions (can access specific buckets but cannot create new buckets)
-- **Region**: `us-east-1` (hardcoded in workflow)
-- Sets proper `content-type: text/html` and cache headers
-- **Permission Note**: Bucket creation requires admin privileges - coordinate with AWS admin for new bucket setup
+- **Hosting**: AWS Amplify with automatic deployments from GitHub
+- **Legacy S3 Buckets**: `databricks-january-workshops/` and `databricks-monthly-workshops-newsletter/` (no longer used)
+- **Domain**: Amplify provides auto-generated domain for newsletter access
+- **Build**: Static site hosting - no build process required (CDN-only resources)
+- **Auth**: Managed through Amplify service, no manual AWS CLI needed
 
 ## Development Patterns
 
@@ -62,21 +61,23 @@ oat: { light: '#F9F7F4', medium: '#EEEDE9' } // Light backgrounds
 
 ### Primary Workflow
 ```bash
-./deploy.sh       # January-specific deployment (legacy)
-./deploy-new.sh   # Generic monthly deployment (recommended for reuse)
+git add .
+git commit -m "Newsletter updates - $(date '+%Y-%m-%d %H:%M:%S')"
+git push origin main     # Triggers automatic Amplify deployment
 ```
 
-### Manual Operations
+### Legacy Operations (No Longer Used)
 ```bash
-# Deploy to generic bucket
-aws s3 cp February_Enablement_Newsletter.html s3://databricks-monthly-workshops-newsletter/February_Enablement_Newsletter.html --content-type "text/html"
+./deploy.sh       # Old January-specific deployment 
+./deploy-new.sh   # Old generic deployment script
+```
 
-# Deploy to January bucket (legacy)
-aws s3 cp January_Enablement_Newsletter.html s3://databricks-january-workshops/January_Enablement_Newsletter.html --content-type "text/html"
-
+### Rollback Operations
+```bash
 # Rollback pattern (works with any monthly file)
 git checkout [commit-hash] -- February_Enablement_Newsletter.html
-./deploy-new.sh
+git commit -m "Rollback newsletter to previous version"
+git push origin main     # Triggers Amplify redeploy
 ```
 
 ### Verification
@@ -84,6 +85,12 @@ git checkout [commit-hash] -- February_Enablement_Newsletter.html
 aws sts get-caller-identity  # Check AWS auth
 aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 ```
+
+## Amplify Setup (One-Time Configuration)
+1. **Connect Repository**: Link https://github.com/jneil17/workshop_newsletter to AWS Amplify
+2. **Build Settings**: No build process needed - static HTML files
+3. **Environment**: Production branch = `main`
+4. **Domain**: Note the auto-generated Amplify URL for accessing newsletters
 
 ## When Making Changes
 
@@ -98,16 +105,15 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 9. **Regional events** - Check `Sheet34.html` for latest event data and registration links
 
 ## Environment Dependencies
-- **AWS CLI** configured with `jneil_developer` credentials  
 - **Git** with Databricks pre-commit hooks enabled
 - **Internet access** for CDN resources (Tailwind, fonts, icons)
 
 ## Current Status (February 2026)
 - **February Newsletter**: Complete with 8 FY26 workshop links and regional events
 - **GitHub**: Changes successfully pushed to https://github.com/jneil17/workshop_newsletter
-- **S3 Bucket**: Needs `databricks-monthly-workshops-newsletter` bucket created by AWS admin
-- **Deployment**: Ready to deploy once bucket exists
+- **AWS Amplify**: Ready for connection to GitHub repository for auto-deployment
+- **Deployment**: Automatic via git push once Amplify is configured
 - **Files Created**: 
   - `February_Enablement_Newsletter.html` (950+ lines)
-  - `deploy-new.sh` (enhanced deployment script)
+  - `deploy-new.sh` (enhanced deployment script - legacy)
   - `feb_file.md`, `Sheet34.html` (source data files)
