@@ -112,23 +112,60 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 - **Git** with Databricks pre-commit hooks enabled
 - **Internet access** for CDN resources (Tailwind, fonts, icons)
 
-## Current Status (February 2026)
-- **February Newsletter**: Complete with 8 FY26 workshop links and regional events
-- **GitHub**: Changes successfully pushed to https://github.com/jneil17/workshop_newsletter
-- **Repository**: Public (required for AWS Amplify free tier)
-- **AWS Amplify**: Connected to GitHub repository with auto-deployment
+## Current Status (December 2024 - Post CSV Alignment)
+
+### CSV Data Source Authority
+- **Source File**: `databricks_workshops_EST.csv` with 40 verified workshops
+- **Date Range**: February 17 - April 30, 2026 (series ends April 30th)
+- **Distribution**: February (8), March (14), April (18), May (0)
+- **Critical Discovery**: May workshops in original newsletters were completely fake/non-existent
+
+### Newsletter Implementation Status
+- **February Newsletter** (Main): ✅ **100% COMPLETE** (8/8 workshops from CSV)
+  - File: `Databricks_Monthly_Enablement_Newsletter.html`
+  - Accuracy: All dates, times, and content match CSV source
+  - Status: Live and verified accurate
+
+- **March Newsletter**: 🟡 **PARTIAL** (1/14 workshops implemented)
+  - File: `March_Enablement_Newsletter.html` 
+  - Remaining: 13 workshops need CSV alignment
+  - Priority: Medium (incremental improvement)
+
+- **April Newsletter**: 🟡 **PARTIAL** (1/18 workshops implemented)
+  - File: `April_Enablement_Newsletter.html`
+  - Remaining: 17 workshops need CSV alignment  
+  - Priority: Medium (incremental improvement)
+
+- **May Newsletter**: ✅ **COMPLETE REWRITE** (0/0 workshops - correct)
+  - File: `May_Enablement_Newsletter.html`
+  - Status: Converted to "FY26 Series Complete" page
+  - Features: Workshop recap, learning resources, FY27 signup
+
+### Critical Fixes Completed
+- ✅ **Fake Workshop Removal**: Eliminated all non-existent May workshops
+- ✅ **Landing Page Accuracy**: Updated to show series concludes April 30, 2026
+- ✅ **February Precision**: 100% alignment with CSV data (Feb 17-27 schedule)
+- ✅ **Series End Communication**: Clear messaging that spring series concludes in April
+- ✅ **Alternative Resources**: May newsletter provides Academy/community links
+
+### Technical Infrastructure
+- **GitHub**: https://github.com/jneil17/workshop_newsletter (public, auto-deploy enabled)
+- **AWS Amplify**: Connected with automatic deployments from GitHub main branch
 - **Domain**: dbx4startups.com (live and working)
-- **Deployment**: Automatic via git push once Amplify is configured
-- **Future Newsletters**: March, April, May 2026 newsletters created with preview functionality
 - **Google Calendar**: Workshop calendar integrated on landing page
-- **Files Created**: 
-  - `Databricks_Monthly_Enablement_Newsletter.html` (main live newsletter)
-  - `February_Enablement_Newsletter.html` (950+ lines)
-  - `March_Enablement_Newsletter.html`, `April_Enablement_Newsletter.html`, `May_Enablement_Newsletter.html` (future newsletters)
-  - `index.html` (professional landing page with calendar integration)
-  - `amplify.yml` (AWS Amplify build configuration)
-  - `deploy-new.sh` (enhanced deployment script - legacy)
-  - `feb_file.md`, `Sheet34.html` (source data files)
+- **Deployment**: Automatic via `git push origin main`
+
+### Files Status
+- **Core Files**: 
+  - `databricks_workshops_EST.csv` (authoritative source - 40 workshops)
+  - `Databricks_Monthly_Enablement_Newsletter.html` (February - 100% accurate)
+  - `index.html` (landing page - updated for April series end)
+  - `May_Enablement_Newsletter.html` (series completion page)
+- **Partial Files**: 
+  - `March_Enablement_Newsletter.html` (needs 13 more workshops)
+  - `April_Enablement_Newsletter.html` (needs 17 more workshops)
+- **Configuration**: 
+  - `amplify.yml`, `deploy-new.sh` (legacy), `.github/copilot-instructions.md`
 
 ## Landing Page Features
 - **Professional branding** with Databricks color scheme
@@ -145,27 +182,60 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
   - Fix: Add `baseDirectory: '.'` in artifacts section of amplify.yml
 - **Auth issues**: Ensure GitHub CLI is authenticated as correct user (`gh auth switch --user jneil17`)
 
-## Monthly Newsletter Update Workflow
+## Recent Data Validation (December 2024)
 
-### For New Month (e.g., March 2026):
-1. **Archive Current**: Copy `Databricks_Monthly_Enablement_Newsletter.html` to `February_Enablement_Newsletter.html`
-2. **Edit Main File**: Update `Databricks_Monthly_Enablement_Newsletter.html` with March content
-3. **Update Landing Page**: Modify `index.html` to reflect new current month in hero section
-4. **Test Links**: Verify all workshop and registration URLs
-5. **Deploy**: 
+### Critical Issues Discovered & Resolved
+1. **Fake Workshop Problem**: Original May newsletter contained completely fictitious workshops
+   - **Impact**: Misleading users about non-existent events
+   - **Resolution**: Complete rewrite to "FY26 Series Complete" message
+   
+2. **CSV Misalignment**: Newsletters had incorrect dates/incomplete coverage
+   - **Root Cause**: Manual editing without CSV verification
+   - **Resolution**: Systematic CSV-based corrections for February (100% complete)
+
+3. **Series End Confusion**: Landing page implied workshops continued beyond April
+   - **Impact**: User expectations not aligned with actual schedule
+   - **Resolution**: Clear April 30th end date messaging
+
+### Validation Commands Used
+```bash
+# Verify CSV workshop counts
+grep -c "^[^,]*,02/.*/2026" databricks_workshops_EST.csv  # February: 8
+grep -c "^[^,]*,03/.*/2026" databricks_workshops_EST.csv  # March: 14  
+grep -c "^[^,]*,04/.*/2026" databricks_workshops_EST.csv  # April: 18
+
+# Check newsletter implementations
+grep -c "02/.*2026.*EST" Databricks_Monthly_Enablement_Newsletter.html  # 8 (complete)
+grep -c "03/.*2026.*EST" March_Enablement_Newsletter.html  # 1 (partial)
+grep -c "04/.*2026.*EST" April_Enablement_Newsletter.html  # 1 (partial)
+```
+
+### Lessons Learned
+- **Always verify against CSV source** before newsletter updates
+- **Template copying can propagate errors** - validate each month independently  
+- **User communication** - clearly state series end dates
+- **Systematic approach** needed for multi-file consistency
+
+## Monthly Newsletter Update Workflow (Updated)
+
+### CSV-First Approach (REQUIRED):
+1. **Verify CSV Data**: Always check `databricks_workshops_EST.csv` for authoritative workshop list
+2. **Count Verification**: Use grep commands to verify workshop counts per month
+3. **Date Validation**: Ensure newsletter dates exactly match CSV entries
+4. **Series Boundaries**: Check CSV for actual start/end dates (no assumptions)
+
+### For New Month Updates:
+1. **Check CSV First**: Verify workshops exist for target month
+2. **Archive Current**: Copy main newsletter to monthly archive
+3. **CSV-Based Updates**: Use CSV data as single source of truth 
+4. **Cross-Validation**: Verify newsletter counts match CSV counts
+5. **Landing Page**: Update to reflect current month and series status
+6. **Deploy & Verify**:
    ```bash
    git add .
-   git commit -m "March 2026 newsletter update - $(date '+%Y-%m-%d %H:%M:%S')"
+   git commit -m "[Month] newsletter update - CSV verified - $(date '+%Y-%m-%d %H:%M:%S')"
    git push origin main
    ```
-6. **Verify**: Check dbx4startups.com for live updates
-
-### Content Update Guidelines:
-- **Workshop Links**: Use current FY workshop URLs from latest source data
-- **Regional Events**: Update with current quarter's events and registration links
-- **Coming Soon**: Adjust preview section for next 3 months
-- **Meta Tags**: Update month references in `<title>` and SEO tags
-- **Calendar**: Google Calendar updates automatically, no manual changes needed
 
 ## Site Structure Summary
 - **Live Domain**: dbx4startups.com
