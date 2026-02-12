@@ -1,159 +1,194 @@
-# January Enablement Newsletter Workflow
+# Databricks Monthly Newsletter Workflow
 
-This repository manages the Databricks January Enablement Newsletter that is publicly available at:
-**https://databricks-january-workshops.s3.us-east-1.amazonaws.com/January_Enablement_Newsletter.html**
+This repository manages the Databricks monthly enablement newsletters with automatic deployment via AWS Amplify.
+
+🌐 **Live Site**: [Databricks Newsletter Archive](https://main.amplifyapp.com/your-unique-url)
 
 ## 📋 Overview
 
-- **Source File**: `January_Enablement_Newsletter.html`
-- **S3 Bucket**: `s3://databricks-january-workshops/`
-- **GitHub Repository**: Backup and version control
-- **Public URL**: https://databricks-january-workshops.s3.us-east-1.amazonaws.com/January_Enablement_Newsletter.html
+- **Newsletter Files**: `January_Enablement_Newsletter.html`, `February_Enablement_Newsletter.html`, etc.
+- **Landing Page**: `index.html` - Archive page with navigation to all newsletters
+- **Hosting**: AWS Amplify with automatic deployments from GitHub
+- **Repository**: https://github.com/jneil17/workshop_newsletter
+- **Deployment**: Automatic on git push to `main` branch
 
-## 🚀 Quick Deploy
+## 🚀 Quick Deployment Workflow
 
-After making changes to the HTML file, simply run:
-
-```bash
-./deploy.sh
-```
-
-This script will:
-1. ✅ Commit your changes to Git
-2. ☁️ Upload the file to S3
-3. 📤 Push changes to GitHub
-
-## 🛠 Setup Requirements
-
-### AWS CLI Configuration
-Make sure you have AWS CLI installed and configured with appropriate permissions:
+The deployment process is now fully automated via AWS Amplify:
 
 ```bash
-# Install AWS CLI (if not already installed)
-pip install awscli
-
-# Configure AWS credentials
-aws configure
-```
-
-**AWS Credentials Setup:**
-1. **Access Key ID**: `AKIAZI2LGMDC2NLULV4E` (for jneil_developer user) # gitleaks:allow
-2. **Secret Access Key**: [Configured separately]
-3. **Region**: `us-east-1`
-4. **Output Format**: `json`
-
-**Required IAM Policy for `jneil_developer` user:**
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:GetObject",
-                "s3:PutObject",
-                "s3:PutObjectAcl",
-                "s3:DeleteObject"
-            ],
-            "Resource": "arn:aws:s3:::databricks-january-workshops/*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:ListBucket"
-            ],
-            "Resource": "arn:aws:s3:::databricks-january-workshops"
-        }
-    ]
-}
-```
-
-**Verify Setup:**
-```bash
-# Check AWS identity
-aws sts get-caller-identity
-
-# Test S3 access
-aws s3 ls s3://databricks-january-workshops/
-```
-
-### Git Configuration
-Ensure your Git is configured:
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your.email@databricks.com"
-```
-
-## 📝 Workflow Steps
-
-### 1. Make Changes
-Edit the `January_Enablement_Newsletter.html` file with your updates.
-
-### 2. Deploy
-Run the deployment script:
-```bash
-./deploy.sh
-```
-
-### 3. Verify
-Check the live site: https://databricks-january-workshops.s3.us-east-1.amazonaws.com/January_Enablement_Newsletter.html
-
-## 🔄 Manual Commands (if needed)
-
-### Deploy to S3 only:
-```bash
-aws s3 cp January_Enablement_Newsletter.html s3://databricks-january-workshops/January_Enablement_Newsletter.html --content-type "text/html"
-```
-
-### Commit and push to GitHub only:
-```bash
-git add January_Enablement_Newsletter.html
-git commit -m "Update newsletter: $(date '+%Y-%m-%d %H:%M:%S')"
+# 1. Edit newsletter file (e.g., February_Enablement_Newsletter.html)
+# 2. Commit and push changes
+git add .
+git commit -m "Updated newsletter content - $(date '+%Y-%m-%d %H:%M:%S')"
 git push origin main
+
+# 3. AWS Amplify automatically builds and deploys! ✨
 ```
 
-## 📚 File Structure
+**That's it!** No manual deployment scripts needed.
+
+## 📁 Project Structure
 
 ```
 workshop_newsletter/
-├── January_Enablement_Newsletter.html  # Main newsletter file
-├── deploy.sh                          # Deployment script
-└── README.md                          # This file
+├── index.html                           # Landing page - newsletter archive
+├── January_Enablement_Newsletter.html   # January 2026 newsletter
+├── February_Enablement_Newsletter.html  # February 2026 newsletter  
+├── amplify.yml                         # AWS Amplify build configuration
+├── README.md                           # This file
+├── .gitignore                          # Git ignore rules
+└── .github/
+    └── copilot-instructions.md         # Project documentation/context
 ```
 
-## 🔧 Troubleshooting
+## 🛠 AWS Amplify Setup (One-Time Configuration)
 
-### AWS Permissions
-If you get permission errors, ensure your AWS credentials have access to the S3 bucket.
+### Prerequisites
+- AWS Account with Amplify access
+- GitHub repository: https://github.com/jneil17/workshop_newsletter
 
-### Git Push Issues
-If GitHub push fails, you may need to set up authentication:
+### Setup Steps
+
+1. **Connect to Amplify**
+   - Log into AWS Console → Amplify
+   - Click "Host web app" → GitHub
+   - Select repository: `jneil17/workshop_newsletter`
+   - Branch: `main`
+
+2. **Build Configuration** 
+   - Amplify will automatically detect `amplify.yml`
+   - No additional build steps needed (static HTML files)
+   - CDN resources: Tailwind CSS, Google Fonts, Font Awesome
+
+3. **Domain Setup**
+   - Amplify provides auto-generated domain
+   - Optional: Configure custom domain
+   - All newsletter files accessible at root level
+
+4. **Environment Variables** (if needed)
+   - None required for static HTML hosting
+
+## 🎨 Newsletter Architecture
+
+### Content Structure
+- **Static HTML**: Self-contained newsletters with CDN-only resources
+- **No Build Process**: Direct HTML serving, no compilation needed
+- **Responsive Design**: Tailwind CSS with Databricks brand colors
+- **Regional Events**: Integration with workshop and event data
+
+### Brand Colors (Databricks)
+```css
+lava: { 500: '#FF5F46', 600: '#FF3621' }    /* Primary brand orange */
+navy: { 800: '#1B3139', 900: '#0B2026' }    /* Dark text/backgrounds */  
+oat: { light: '#F9F7F4', medium: '#EEEDE9' } /* Light backgrounds */
+```
+
+### HTML Best Practices
+- Semantic HTML5 structure
+- Proper heading hierarchy (h1 → h6)
+- ARIA labels for accessibility
+- Workshop weeks as `<section id="weekN">`
+- Regional events grid with registration links
+
+## 📝 Creating New Monthly Newsletters
+
+### Monthly Workflow
+1. **Copy Previous Month**: Use latest newsletter as template
+2. **Update Content**: 
+   - Change all month references
+   - Update workshop links and dates
+   - Refresh regional events data
+   - Update "Coming This Spring" preview section
+3. **Test Links**: Verify all registration and workshop URLs
+4. **Deploy**: Git commit + push → automatic Amplify deployment
+
+### Link Styling Guidelines
+- **Workshop links**: `text-lava-500 underline hover:text-lava-600`  
+- **Event registration**: `bg-lava-500 text-white hover:bg-lava-600`
+- **Dark backgrounds**: Use `text-lava-500` for visibility
+- **Light backgrounds**: Use `text-lava-600` or `text-navy-800`
+
+## 🔄 Rollback Procedures
+
+### Quick Rollback
 ```bash
-# For SSH (recommended)
-git remote set-url origin git@github.com:john-neil_data/workshop_newsletter.git
-
-# For HTTPS with token
-git remote set-url origin https://[token]@github.com/john-neil_data/workshop_newsletter.git
+# Rollback to previous version
+git log --oneline                                    # Find commit hash
+git checkout [commit-hash] -- February_Enablement_Newsletter.html
+git commit -m "Rollback newsletter to previous version"
+git push origin main                                 # Triggers auto-redeploy
 ```
 
-### Rollback Changes
-To rollback to a previous version:
+### Emergency Index Page Update
 ```bash
-# View commit history
-git log --oneline
-
-# Revert to specific commit
-git checkout [commit-hash] -- January_Enablement_Newsletter.html
-
-# Deploy the reverted version
-./deploy.sh
+# Update landing page links or content
+vim index.html
+git add index.html
+git commit -m "Updated newsletter archive landing page"
+git push origin main
 ```
 
-## 🎯 Best Practices
+## 🚨 Troubleshooting
 
-1. **Always test locally** before deploying
-2. **Use meaningful commit messages** when making changes
-3. **Check the live site** after deployment
-4. **Keep regular backups** (GitHub serves as our backup)
-5. **Document major changes** in commit messages
+### Common Issues
+
+**Amplify Build Fails**
+- Check `amplify.yml` syntax
+- Verify all referenced files exist
+- Review build logs in AWS Amplify console
+
+**Newsletter Links Broken**  
+- Test all workshop registration URLs
+- Verify event links are still active
+- Check relative vs absolute paths
+
+**CSS/Styling Issues**
+- Confirm CDN resources loading (Tailwind, fonts)
+- Check internet connectivity during build
+- Verify Databricks brand color definitions
+
+**Git Issues**
+- Ensure GitHub repository is accessible
+- Check git remote: `git remote -v`
+- Verify Databricks pre-commit hooks pass
+
+### Debug Commands
+```bash
+# Check git status
+git status
+git log --oneline -n 5
+
+# Test AWS Amplify build locally (optional)
+# No build process needed for static site
+
+# Verify file structure
+ls -la *.html
+```
+
+## 📚 Legacy Files (No Longer Used)
+
+The following files are kept for reference but not used in Amplify deployment:
+- `deploy.sh` - Original January-specific S3 deployment
+- `deploy-new.sh` - Generic S3 deployment script
+- `feb_file.md` - Workshop data source (integrated into February newsletter)
+- `Sheet34.html` - Regional events source data
+
+## 🔗 Useful Resources
+
+- **AWS Amplify Console**: Monitor deployments and build logs
+- **GitHub Repository**: https://github.com/jneil17/workshop_newsletter
+- **Tailwind CSS Docs**: https://tailwindcss.com/docs (for styling updates)
+- **Databricks Brand Guidelines**: Use defined color palette consistently
+
+## 📞 Support
+
+For deployment issues or questions:
+- Check build logs in AWS Amplify Console  
+- Review commit history for recent changes
+- Verify all workshop links are accessible
+- Test responsive design across devices
+
+---
+
+**🎯 Remember**: The goal is a simple, automated workflow where editing a newsletter and pushing to git immediately updates the live site!

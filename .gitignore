@@ -18,4 +18,11 @@ aws-credentials.txt
 
 # Backup files
 *.bak
-*.backup
+
+# Amplify build files (if generated locally)
+amplify/
+.amplify/
+
+# Node.js (if used for local development)
+node_modules/
+package-lock.json

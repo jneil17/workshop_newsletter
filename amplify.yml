@@ -1,0 +1,18 @@
+version: 1
+frontend:
+  phases:
+    # No build process needed - static HTML files with CDN resources
+    preBuild:
+      commands:
+        - echo "Static HTML newsletter - no build required"
+  artifacts:
+    # Publish all HTML files directly
+    files:
+      - '**/*'
+    exclude:
+      - 'deploy*.sh'
+      - 'feb_file.md'  
+      - 'Sheet34.html'
+      - '.git/**/*'
+  cache:
+    paths: []
