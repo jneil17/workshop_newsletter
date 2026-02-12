@@ -122,4 +122,6 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 ## Troubleshooting (Common Issues)
 - **Amplify "Repository not found" error**: Repository must be PUBLIC for Amplify free tier
   - Fix: `gh repo edit jneil17/workshop_newsletter --visibility public --accept-visibility-change-consequences`
+- **Amplify "Base Directory not specified" error**: amplify.yml missing baseDirectory
+  - Fix: Add `baseDirectory: '.'` in artifacts section of amplify.yml
 - **Auth issues**: Ensure GitHub CLI is authenticated as correct user (`gh auth switch --user jneil17`)
