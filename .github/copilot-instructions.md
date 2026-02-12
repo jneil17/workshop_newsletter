@@ -14,7 +14,10 @@ This is a **monthly newsletter deployment system** for Databricks Customer Enabl
 ### Newsletter Files
 - `Databricks_Monthly_Enablement_Newsletter.html` - **Main live newsletter** with consistent URL (950+ lines)
 - `February_Enablement_Newsletter.html` - February 2026 archive with enhanced workshop content and regional events
-- `January_Enablement_Newsletter.html` - January 2026 archive (843 lines) 
+- `January_Enablement_Newsletter.html` - January 2026 archive (843 lines)
+- `March_Enablement_Newsletter.html` - March 2026 future newsletter preview
+- `April_Enablement_Newsletter.html` - April 2026 future newsletter preview  
+- `May_Enablement_Newsletter.html` - May 2026 future newsletter preview
 - Uses **CDN-only approach**: Tailwind CSS, Google Fonts, Font Awesome - no build process
 - Self-contained styling with custom Databricks brand colors in `<script>` tag
 
@@ -115,8 +118,11 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 - **Repository**: Public (required for AWS Amplify free tier)
 - **AWS Amplify**: Ready for connection to GitHub repository for auto-deployment
 - **Deployment**: Automatic via git push once Amplify is configured
+- **Future Newsletters**: March, April, May 2026 newsletters created with preview functionality
 - **Files Created**: 
+  - `Databricks_Monthly_Enablement_Newsletter.html` (main live newsletter)
   - `February_Enablement_Newsletter.html` (950+ lines)
+  - `March_Enablement_Newsletter.html`, `April_Enablement_Newsletter.html`, `May_Enablement_Newsletter.html` (future newsletters)
   - `deploy-new.sh` (enhanced deployment script - legacy)
   - `feb_file.md`, `Sheet34.html` (source data files)
 

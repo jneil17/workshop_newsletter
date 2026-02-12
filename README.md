@@ -34,8 +34,11 @@ git push origin main
 workshop_newsletter/
 ├── index.html                                   # Landing page - newsletter archive
 ├── Databricks_Monthly_Enablement_Newsletter.html # Main live newsletter (consistent URL)
-├── February_Enablement_Newsletter.html         # February 2026 archive
+├── February_Enablement_Newsletter.html         # February 2026 archive  
 ├── January_Enablement_Newsletter.html          # January 2026 archive
+├── March_Enablement_Newsletter.html            # March 2026 future newsletter
+├── April_Enablement_Newsletter.html            # April 2026 future newsletter
+├── May_Enablement_Newsletter.html              # May 2026 future newsletter
 ├── amplify.yml                                 # AWS Amplify build configuration
 ├── README.md                                   # This file
 ├── .gitignore                                  # Git ignore rules
