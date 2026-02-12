@@ -36,8 +36,8 @@ This is a **monthly newsletter deployment system** for Databricks Customer Enabl
 
 ### AWS Integration
 - **Hosting**: AWS Amplify with automatic deployments from GitHub
+- **Domain**: dbx4startups.com (custom domain configured in Amplify)
 - **Legacy S3 Buckets**: `databricks-january-workshops/` and `databricks-monthly-workshops-newsletter/` (no longer used)
-- **Domain**: Amplify provides auto-generated domain for newsletter access
 - **Build**: Static site hosting - no build process required (CDN-only resources)
 - **Auth**: Managed through Amplify service, no manual AWS CLI needed
 
@@ -94,7 +94,7 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 1. **Connect Repository**: Link https://github.com/jneil17/workshop_newsletter to AWS Amplify
 2. **Build Settings**: No build process needed - static HTML files
 3. **Environment**: Production branch = `main`
-4. **Domain**: Note the auto-generated Amplify URL for accessing newsletters
+4. **Domain**: dbx4startups.com (custom domain configured and working)
 
 ## When Making Changes
 
@@ -103,7 +103,7 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 3. **Maintain brand colors** - stick to the defined lava/navy/oat palette
 4. **Update month/dates** consistently throughout the document
 5. **Test responsive design** - heavy use of Tailwind responsive utilities
-6. **Verify public URL** after deployment to ensure changes are live
+6. **Verify public URL** after deployment to ensure changes are live at dbx4startups.com
 7. **Link visibility** - Use `text-lava-500 underline` for clickable links on dark backgrounds
 8. **Workshop integration** - Reference `feb_file.md` for current FY26 workshop URLs
 9. **Regional events** - Check `Sheet34.html` for latest event data and registration links
@@ -116,15 +116,27 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 - **February Newsletter**: Complete with 8 FY26 workshop links and regional events
 - **GitHub**: Changes successfully pushed to https://github.com/jneil17/workshop_newsletter
 - **Repository**: Public (required for AWS Amplify free tier)
-- **AWS Amplify**: Ready for connection to GitHub repository for auto-deployment
+- **AWS Amplify**: Connected to GitHub repository with auto-deployment
+- **Domain**: dbx4startups.com (live and working)
 - **Deployment**: Automatic via git push once Amplify is configured
 - **Future Newsletters**: March, April, May 2026 newsletters created with preview functionality
+- **Google Calendar**: Workshop calendar integrated on landing page
 - **Files Created**: 
   - `Databricks_Monthly_Enablement_Newsletter.html` (main live newsletter)
   - `February_Enablement_Newsletter.html` (950+ lines)
   - `March_Enablement_Newsletter.html`, `April_Enablement_Newsletter.html`, `May_Enablement_Newsletter.html` (future newsletters)
+  - `index.html` (professional landing page with calendar integration)
+  - `amplify.yml` (AWS Amplify build configuration)
   - `deploy-new.sh` (enhanced deployment script - legacy)
   - `feb_file.md`, `Sheet34.html` (source data files)
+
+## Landing Page Features
+- **Professional branding** with Databricks color scheme
+- **Current newsletter highlight** with main call-to-action
+- **Archive section** for historical newsletters (January, February)
+- **Google Calendar embed** for live workshop schedule
+- **Coming Soon section** with future newsletter previews (March, April, May)
+- **Responsive design** optimized for mobile and desktop
 
 ## Troubleshooting (Common Issues)
 - **Amplify "Repository not found" error**: Repository must be PUBLIC for Amplify free tier
@@ -132,3 +144,34 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 - **Amplify "Base Directory not specified" error**: amplify.yml missing baseDirectory
   - Fix: Add `baseDirectory: '.'` in artifacts section of amplify.yml
 - **Auth issues**: Ensure GitHub CLI is authenticated as correct user (`gh auth switch --user jneil17`)
+
+## Monthly Newsletter Update Workflow
+
+### For New Month (e.g., March 2026):
+1. **Archive Current**: Copy `Databricks_Monthly_Enablement_Newsletter.html` to `February_Enablement_Newsletter.html`
+2. **Edit Main File**: Update `Databricks_Monthly_Enablement_Newsletter.html` with March content
+3. **Update Landing Page**: Modify `index.html` to reflect new current month in hero section
+4. **Test Links**: Verify all workshop and registration URLs
+5. **Deploy**: 
+   ```bash
+   git add .
+   git commit -m "March 2026 newsletter update - $(date '+%Y-%m-%d %H:%M:%S')"
+   git push origin main
+   ```
+6. **Verify**: Check dbx4startups.com for live updates
+
+### Content Update Guidelines:
+- **Workshop Links**: Use current FY workshop URLs from latest source data
+- **Regional Events**: Update with current quarter's events and registration links
+- **Coming Soon**: Adjust preview section for next 3 months
+- **Meta Tags**: Update month references in `<title>` and SEO tags
+- **Calendar**: Google Calendar updates automatically, no manual changes needed
+
+## Site Structure Summary
+- **Live Domain**: dbx4startups.com
+- **Main Newsletter**: `/Databricks_Monthly_Enablement_Newsletter.html` (consistent URL)
+- **Landing Page**: `/` (index.html with full navigation and calendar)
+- **Archives**: `/[Month]_Enablement_Newsletter.html` (historical versions)
+- **Future Previews**: Available for planning and user engagement
+- **Google Calendar**: Embedded for real-time workshop schedules
+- **Responsive**: Optimized for all device sizes with Databricks branding

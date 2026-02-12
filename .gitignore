@@ -19,6 +19,9 @@ aws-credentials.txt
 # Backup files
 *.bak
 
+# Archive folder (legacy files)
+.archive/
+
 # Amplify build files (if generated locally)
 amplify/
 .amplify/

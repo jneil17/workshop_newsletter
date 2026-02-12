@@ -2,7 +2,7 @@
 
 This repository manages the Databricks monthly enablement newsletters with automatic deployment via AWS Amplify.
 
-🌐 **Live Site**: [Databricks Newsletter Archive](https://main.amplifyapp.com/your-unique-url)
+🌐 **Live Site**: [dbx4startups.com](https://dbx4startups.com)
 
 ## 📋 Overview
 
@@ -42,6 +42,7 @@ workshop_newsletter/
 ├── amplify.yml                                 # AWS Amplify build configuration
 ├── README.md                                   # This file
 ├── .gitignore                                  # Git ignore rules
+├── .archive/                                   # Legacy deployment scripts and source files
 └── .github/
     └── copilot-instructions.md                 # Project documentation/context
 ```
@@ -182,9 +183,9 @@ git log --oneline -n 5
 ls -la *.html
 ```
 
-## 📚 Legacy Files (No Longer Used)
+## 📚 Archived Files
 
-The following files are kept for reference but not used in Amplify deployment:
+The following files are kept in `.archive/` folder for reference but not used in live deployment:
 - `deploy.sh` - Original January-specific S3 deployment
 - `deploy-new.sh` - Generic S3 deployment script
 - `feb_file.md` - Workshop data source (integrated into February newsletter)
