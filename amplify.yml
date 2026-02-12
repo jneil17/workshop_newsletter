@@ -5,14 +5,27 @@ frontend:
     preBuild:
       commands:
         - echo "Static HTML newsletter - no build required"
+    build:
+      commands:
+        - echo "No build step - serving HTML files directly"
   artifacts:
-    # Publish all HTML files directly
+    # Publish all files from root directory
+    baseDirectory: '.'
     files:
-      - '**/*'
+      - '**/*.html'
+      - '**/*.css'
+      - '**/*.js'
+      - '**/*.png'
+      - '**/*.jpg'
+      - '**/*.gif'
+      - '**/*.svg'
+      - '**/*.ico'
     exclude:
       - 'deploy*.sh'
       - 'feb_file.md'  
       - 'Sheet34.html'
       - '.git/**/*'
+      - 'README.md'
+      - '.github/**/*'
   cache:
     paths: []
