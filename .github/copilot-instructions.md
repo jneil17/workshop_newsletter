@@ -111,9 +111,15 @@ aws s3 ls s3://databricks-january-workshops/  # Test bucket access
 ## Current Status (February 2026)
 - **February Newsletter**: Complete with 8 FY26 workshop links and regional events
 - **GitHub**: Changes successfully pushed to https://github.com/jneil17/workshop_newsletter
+- **Repository**: Public (required for AWS Amplify free tier)
 - **AWS Amplify**: Ready for connection to GitHub repository for auto-deployment
 - **Deployment**: Automatic via git push once Amplify is configured
 - **Files Created**: 
   - `February_Enablement_Newsletter.html` (950+ lines)
   - `deploy-new.sh` (enhanced deployment script - legacy)
   - `feb_file.md`, `Sheet34.html` (source data files)
+
+## Troubleshooting (Common Issues)
+- **Amplify "Repository not found" error**: Repository must be PUBLIC for Amplify free tier
+  - Fix: `gh repo edit jneil17/workshop_newsletter --visibility public --accept-visibility-change-consequences`
+- **Auth issues**: Ensure GitHub CLI is authenticated as correct user (`gh auth switch --user jneil17`)
