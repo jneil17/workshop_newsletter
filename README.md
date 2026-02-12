@@ -32,14 +32,15 @@ git push origin main
 
 ```
 workshop_newsletter/
-├── index.html                           # Landing page - newsletter archive
-├── January_Enablement_Newsletter.html   # January 2026 newsletter
-├── February_Enablement_Newsletter.html  # February 2026 newsletter  
-├── amplify.yml                         # AWS Amplify build configuration
-├── README.md                           # This file
-├── .gitignore                          # Git ignore rules
+├── index.html                                   # Landing page - newsletter archive
+├── Databricks_Monthly_Enablement_Newsletter.html # Main live newsletter (consistent URL)
+├── February_Enablement_Newsletter.html         # February 2026 archive
+├── January_Enablement_Newsletter.html          # January 2026 archive
+├── amplify.yml                                 # AWS Amplify build configuration
+├── README.md                                   # This file
+├── .gitignore                                  # Git ignore rules
 └── .github/
-    └── copilot-instructions.md         # Project documentation/context
+    └── copilot-instructions.md                 # Project documentation/context
 ```
 
 ## 🛠 AWS Amplify Setup (One-Time Configuration)
@@ -94,14 +95,26 @@ oat: { light: '#F9F7F4', medium: '#EEEDE9' } /* Light backgrounds */
 ## 📝 Creating New Monthly Newsletters
 
 ### Monthly Workflow
-1. **Copy Previous Month**: Use latest newsletter as template
-2. **Update Content**: 
-   - Change all month references
+1. **Edit Current Newsletter**: Update `Databricks_Monthly_Enablement_Newsletter.html` (main live file)
+2. **Archive Previous**: Copy current to `[Month]_Enablement_Newsletter.html` for archival
+3. **Update Content**: 
+   - Change all month references in main file
    - Update workshop links and dates
    - Refresh regional events data
    - Update "Coming This Spring" preview section
-3. **Test Links**: Verify all registration and workshop URLs
-4. **Deploy**: Git commit + push → automatic Amplify deployment
+4. **Test Links**: Verify all registration and workshop URLs
+5. **Deploy**: Git commit + push → automatic Amplify deployment
+
+### File Structure
+- **`Databricks_Monthly_Enablement_Newsletter.html`** - Main live newsletter (consistent URL)
+- **`February_Enablement_Newsletter.html`** - February 2026 archive
+- **`January_Enablement_Newsletter.html`** - January 2026 archive
+- **`index.html`** - Landing page with navigation to live + archive versions
+
+### Benefits
+- **Consistent URL**: `/.../Databricks_Monthly_Enablement_Newsletter.html` never changes
+- **Archive Tracking**: Keep historical versions for reference
+- **User Experience**: Bookmarked URLs always show latest content
 
 ### Link Styling Guidelines
 - **Workshop links**: `text-lava-500 underline hover:text-lava-600`  

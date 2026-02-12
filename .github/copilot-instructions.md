@@ -2,18 +2,19 @@
 
 ## Project Overview
 This is a **monthly newsletter deployment system** for Databricks Customer Enablement. The core workflow is:
-1. Edit monthly newsletter file (e.g., `February_Enablement_Newsletter.html`)
+1. Edit main newsletter file (`Databricks_Monthly_Enablement_Newsletter.html`)
 2. Commit and push changes to GitHub
 3. AWS Amplify automatically deploys from git repository
-4. Newsletter goes live via Amplify hosting
+4. Newsletter goes live via Amplify hosting with consistent URL
 
-**Evolution**: System upgraded from manual S3 deployment to automated AWS Amplify deployment with git integration.
+**Evolution**: System upgraded from manual S3 deployment to automated AWS Amplify deployment with git integration. Uses consistent filename for predictable URLs.
 
 ## Key Architecture
 
 ### Newsletter Files
-- `January_Enablement_Newsletter.html` - Original January 2026 newsletter (843 lines) 
-- `February_Enablement_Newsletter.html` - February 2026 newsletter with enhanced workshop content and regional events (950+ lines)
+- `Databricks_Monthly_Enablement_Newsletter.html` - **Main live newsletter** with consistent URL (950+ lines)
+- `February_Enablement_Newsletter.html` - February 2026 archive with enhanced workshop content and regional events
+- `January_Enablement_Newsletter.html` - January 2026 archive (843 lines) 
 - Uses **CDN-only approach**: Tailwind CSS, Google Fonts, Font Awesome - no build process
 - Self-contained styling with custom Databricks brand colors in `<script>` tag
 
