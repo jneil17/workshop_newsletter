@@ -3,280 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Databricks Monthly Newsletter Archive</title>
+    <title>Databricks Enablement Events</title>
+    <meta name="description" content="Upcoming Databricks workshops, AI Days, and enablement events. Filter by format and topic to find the right session for you.">
+    <meta property="og:title" content="Databricks Enablement Events">
+    <meta property="og:description" content="Upcoming Databricks workshops, AI Days, and enablement events.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dbx4startups.com">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        lava: {
-                            400: '#FF7A5C',
-                            500: '#FF5F46', 
-                            600: '#FF3621'
-                        },
-                        navy: {
-                            800: '#1B3139',
-                            900: '#0B2026'
-                        },
-                        oat: {
-                            light: '#F9F7F4',
-                            medium: '#EEEDE9'
-                        }
+                        lava: { 400: '#FF7A5C', 500: '#FF5F46', 600: '#FF3621' },
+                        navy: { 700: '#243E48', 800: '#1B3139', 900: '#0B2026' },
+                        oat: { light: '#F9F7F4', medium: '#EEEDE9' }
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .brand-gradient { background: linear-gradient(135deg, #FF3621 0%, #FF5F46 100%); }
+        .btn-lava { background-color: #FF3621; color: white; transition: background-color 0.2s; }
+        .btn-lava:hover { background-color: #e02e1a; }
+        .filter-pill { transition: all 0.15s ease; }
+        .filter-pill.active { color: white; }
+        .filter-pill:not(.active) { background-color: white; border: 1px solid #d1d5db; color: #374151; }
+        .filter-pill:not(.active):hover { border-color: #9ca3af; background-color: #f9fafb; }
+        .sticky-filters { position: sticky; top: 0; z-index: 30; }
+        .card-enter { animation: cardFadeIn 0.25s ease-out; }
+        @keyframes cardFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        #newsletter-dropdown { display: none; }
+        #newsletter-dropdown.open { display: block; }
+    </style>
 </head>
-<body class="bg-oat-light font-['DM_Sans']">
+<body class="bg-oat-light">
+
     <!-- Header -->
     <header class="bg-white shadow-sm border-b-2 border-lava-500">
-        <div class="max-w-6xl mx-auto px-6 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
             <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-3xl font-bold text-navy-900">Databricks Newsletter Archive</h1>
-                    <p class="text-navy-800 mt-2">Customer Enablement Monthly Newsletters</p>
+                <div class="flex items-center gap-3">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="36" height="36" rx="8" fill="#FF3621"/>
+                        <path d="M18 8L8 14L18 20L28 14L18 8Z" fill="white" opacity="0.9"/>
+                        <path d="M8 18L18 24L28 18" stroke="white" stroke-width="2" fill="none" opacity="0.7"/>
+                        <path d="M8 22L18 28L28 22" stroke="white" stroke-width="2" fill="none" opacity="0.5"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-bold text-navy-900">Databricks Enablement</h1>
+                        <p class="text-sm text-gray-500">Upcoming Events</p>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-newspaper text-lava-500 text-3xl"></i>
+                <div class="relative">
+                    <button onclick="toggleNewsletterDropdown()" class="text-sm text-gray-500 hover:text-lava-600 flex items-center gap-1 cursor-pointer">
+                        <i class="fas fa-archive"></i>
+                        <span class="hidden sm:inline">Previous Newsletters</span>
+                    </button>
+                    <div id="newsletter-dropdown" class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 p-3 z-50">
+                        <div class="text-xs font-semibold text-gray-400 uppercase mb-2">Newsletter Archive</div>
+                        <a href="Databricks_Monthly_Enablement_Newsletter.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-oat-light rounded">February 2026</a>
+                        <a href="March_Enablement_Newsletter.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-oat-light rounded">March 2026</a>
+                        <a href="April_Enablement_Newsletter.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-oat-light rounded">April 2026</a>
+                        <a href="January_Enablement_Newsletter.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-oat-light rounded">January 2026</a>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Current Newsletter Section -->
-    <section class="max-w-6xl mx-auto px-6 py-12">
-        <div class="bg-gradient-to-br from-lava-500 to-lava-600 rounded-xl p-8 text-white mb-12">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-2xl font-bold mb-3">
-                        <i class="fas fa-star mr-2"></i>
-                        Latest Newsletter - February 2026
-                    </h2>
-                    <p class="text-lg opacity-90 mb-4">
-                        FY26 workshop series concluded in April 2026. Thank you for participating!
-                    </p>
-                    <a href="Databricks_Monthly_Enablement_Newsletter.html" 
-                       class="inline-flex items-center bg-white text-lava-600 px-6 py-3 rounded-lg font-semibold hover:bg-oat-light transition-colors">
-                        <i class="fas fa-arrow-right mr-2"></i>
-                        Read Latest Newsletter
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center text-6xl opacity-20">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Newsletter Archive -->
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- February 2026 -->
-            <div class="bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-navy-900">February 2026</h3>
-                        <span class="bg-lava-100 text-lava-600 px-3 py-1 rounded-full text-sm font-medium">
-                            Latest
-                        </span>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        FY26 workshop series featuring Data Intelligence, AI, and regional events across North America.
-                    </p>
-                    <div class="text-sm text-gray-500 mb-4">
-                        <i class="fas fa-calendar mr-2"></i>
-                        Published: February 12, 2026
-                    </div>
-                    <div class="flex space-x-3">
-                        <a href="Databricks_Monthly_Enablement_Newsletter.html" 
-                           class="flex-1 bg-lava-500 text-white text-center py-2 rounded-lg hover:bg-lava-600 transition-colors">
-                            View Newsletter
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- January 2026 -->
-            <div class="bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-navy-900">January 2026</h3>
-                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium">
-                            Archive
-                        </span>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Original newsletter featuring workshops, enablement content, and customer success stories.
-                    </p>
-                    <div class="text-sm text-gray-500 mb-4">
-                        <i class="fas fa-calendar mr-2"></i>
-                        Published: January 2026
-                    </div>
-                    <div class="flex space-x-3">
-                        <a href="January_Enablement_Newsletter.html" 
-                           class="flex-1 bg-navy-800 text-white text-center py-2 rounded-lg hover:bg-navy-900 transition-colors">
-                            View Newsletter
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Workshop Calendar Section -->
-        <section class="max-w-6xl mx-auto px-6 py-16">
-            <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold text-navy-900 mb-4">
-                    <i class="fas fa-calendar-check mr-3 text-lava-500"></i>
-                    Workshop Calendar
-                </h3>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Upcoming workshops and training sessions across the Databricks Data Intelligence Platform.
-                </p>
-            </div>
-
-            <!-- Google Calendar Embed -->
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-                <iframe src="https://calendar.google.com/calendar/embed?src=c_779fc1659357328eadc3f875c0cf022f28fa77c77ace313848f36461c4ee1882%40group.calendar.google.com&ctz=America%2FNew_York" 
-                        style="border: 0" 
-                        width="100%" 
-                        height="600" 
-                        frameborder="0" 
-                        scrolling="no" 
-                        class="w-full rounded-lg">
-                </iframe>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="mt-8 text-center">
-                <p class="text-gray-600 mb-4">Want to see detailed workshop information?</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="Databricks_Monthly_Enablement_Newsletter.html" 
-                       class="bg-lava-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-lava-600 transition-colors">
-                        <i class="fas fa-newspaper mr-2"></i>
-                        View Full Newsletter
-                    </a>
-                    <a href="https://events.databricks.com" 
-                       class="border-2 border-lava-500 text-lava-600 px-6 py-3 rounded-lg font-semibold hover:bg-lava-50 transition-colors">
-                        <i class="fas fa-external-link-alt mr-2"></i>
-                        All Databricks Events
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Coming Soon Section -->
-        <div class="bg-gradient-to-br from-navy-800 to-navy-900 text-white py-12 mt-16">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold mb-4">
-                        <i class="fas fa-calendar-plus mr-3 text-lava-500"></i>
-                        Coming Soon
-                    </h3>
-                    <p class="text-gray-300 max-w-2xl mx-auto">
-                        Future newsletters with upcoming workshops, regional events, and enablement opportunities.
-                    </p>
-                </div>
-                
-                <!-- Future Newsletters Grid -->
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- March 2026 -->
-                    <div class="bg-navy-800/50 rounded-lg p-6 border border-gray-700 hover:bg-navy-800/70 transition-colors">
-                        <div class="text-center">
-                            <div class="text-lava-500 text-3xl mb-4">
-                                <i class="fas fa-sprout"></i>
-                            </div>
-                            <h4 class="text-xl font-bold mb-2">March 2026</h4>
-                            <p class="text-gray-400 text-sm mb-4">Spring Virtual Events & Azure/AWS Workshops</p>
-                            <div class="flex space-x-2">
-                                <a href="March_Enablement_Newsletter.html" 
-                                   class="flex-1 bg-lava-500/20 text-lava-500 text-center py-2 rounded border border-lava-500/30 hover:bg-lava-500/30 transition-colors">
-                                    Preview
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- April 2026 -->
-                    <div class="bg-navy-800/50 rounded-lg p-6 border border-gray-700 hover:bg-navy-800/70 transition-colors">
-                        <div class="text-center">
-                            <div class="text-lava-500 text-3xl mb-4">
-                                <i class="fas fa-seedling"></i>
-                            </div>
-                            <h4 class="text-xl font-bold mb-2">April 2026</h4>
-                            <p class="text-gray-400 text-sm mb-4">AI Days Across North America</p>
-                            <div class="flex space-x-2">
-                                <a href="April_Enablement_Newsletter.html" 
-                                   class="flex-1 bg-lava-500/20 text-lava-500 text-center py-2 rounded border border-lava-500/30 hover:bg-lava-500/30 transition-colors">
-                                    Preview
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Workshop Series Concluded -->
-                    <div class="bg-navy-800/50 rounded-lg p-6 border border-gray-700">
-                        <div class="text-center">
-                            <div class="text-gray-400 text-3xl mb-4">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <h4 class="text-xl font-bold mb-2">FY26 Series Complete</h4>
-                            <p class="text-gray-400 text-sm mb-4">40 workshops delivered successfully</p>
-                            <div class="bg-gray-700 rounded p-3 mb-4">
-                                <div class="text-xs text-gray-300">
-                                    <div class="font-semibold mb-1">Final Workshop Schedule:</div>
-                                    <div>February: 8 workshops</div>
-                                    <div>March: 14 workshops</div>
-                                    <div>April: 18 workshops</div>
-                                </div>
-                            </div>
-                            <div class="text-xs text-gray-400">
-                                Watch for FY27 announcements!
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Intro -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 pb-4">
+        <div class="brand-gradient rounded-xl p-6 sm:p-8 text-white">
+            <h2 class="text-xl sm:text-2xl font-bold mb-2">Hands-on Workshops & Events</h2>
+            <p class="opacity-90 mb-4 text-sm sm:text-base">Free instructor-led sessions on Data Intelligence, AI, Data Engineering, and more. Virtual workshops run weekly; regional AI Days happen across North America.</p>
+            <div class="flex flex-wrap gap-3">
+                <a href="https://www.databricks.com/try-databricks" target="_blank" rel="noopener" class="inline-flex items-center bg-white text-lava-600 px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-oat-light transition-colors">
+                    <i class="fas fa-rocket mr-2"></i> Start Free Trial
+                </a>
+                <a href="#calendar" class="inline-flex items-center bg-white/20 text-white border border-white/40 px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-white/30 transition-colors">
+                    <i class="fas fa-calendar-alt mr-2"></i> View Calendar
+                </a>
+                <a href="#resources" class="inline-flex items-center bg-white/20 text-white border border-white/40 px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-white/30 transition-colors">
+                    <i class="fas fa-book-open mr-2"></i> Resources
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="bg-white border-t border-gray-200 mt-0">
-        <div class="max-w-6xl mx-auto px-6 py-12">
-            <div class="text-center">
-                <h3 class="text-2xl font-bold text-navy-900 mb-4">About Our Newsletters</h3>
-                <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    The Databricks Customer Enablement team publishes monthly newsletters to keep you informed 
-                    about the latest workshops, training opportunities, regional events, and product updates. 
-                    Stay connected with the Databricks community and enhance your data intelligence journey.
-                </p>
+    <!-- Sticky Filters -->
+    <section class="sticky-filters bg-oat-light border-b border-oat-medium">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+            <!-- Format row -->
+            <div class="flex items-center gap-2 mb-3 flex-wrap">
+                <span class="text-xs font-semibold text-gray-400 uppercase mr-1">Format</span>
+                <button onclick="setFormat('all')" data-format="all" class="filter-pill active brand-gradient px-3 py-1.5 rounded-full text-xs font-medium cursor-pointer">All</button>
+                <button onclick="setFormat('Virtual')" data-format="Virtual" class="filter-pill px-3 py-1.5 rounded-full text-xs font-medium cursor-pointer">
+                    <i class="fas fa-video mr-1"></i>Virtual
+                </button>
+                <button onclick="setFormat('In-Person')" data-format="In-Person" class="filter-pill px-3 py-1.5 rounded-full text-xs font-medium cursor-pointer">
+                    <i class="fas fa-location-dot mr-1"></i>In-Person
+                </button>
+            </div>
+            <!-- Category row -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 -mb-1" id="category-filters">
+                <span class="text-xs font-semibold text-gray-400 uppercase mr-1 shrink-0">Topic</span>
+            </div>
+            <!-- Counter -->
+            <div class="text-xs text-gray-400 mt-2" id="event-counter"></div>
+        </div>
+    </section>
+
+    <!-- Event Feed -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-6" id="event-feed"></section>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden max-w-6xl mx-auto px-4 sm:px-6 py-16 text-center">
+        <i class="fas fa-filter-circle-xmark text-4xl text-gray-300 mb-4"></i>
+        <p class="text-gray-500 mb-4">No matching events found.</p>
+        <button onclick="clearFilters()" class="btn-lava px-5 py-2 rounded-lg text-sm font-medium cursor-pointer">Clear Filters</button>
+    </div>
+
+    <!-- Resources -->
+    <section id="resources" class="bg-white border-t border-gray-200 mt-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+            <h3 class="text-xl font-bold text-navy-900 mb-6 text-center">Additional Resources</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="https://www.databricks.com/training" target="_blank" rel="noopener" class="bg-oat-light rounded-lg p-5 hover:shadow-md transition-shadow text-center">
+                    <i class="fas fa-graduation-cap text-lava-500 text-2xl mb-3"></i>
+                    <div class="font-semibold text-navy-900 text-sm">Databricks Academy</div>
+                    <div class="text-xs text-gray-500 mt-1">Self-paced learning paths</div>
+                </a>
+                <a href="https://docs.databricks.com" target="_blank" rel="noopener" class="bg-oat-light rounded-lg p-5 hover:shadow-md transition-shadow text-center">
+                    <i class="fas fa-book text-lava-500 text-2xl mb-3"></i>
+                    <div class="font-semibold text-navy-900 text-sm">Documentation</div>
+                    <div class="text-xs text-gray-500 mt-1">Technical reference & guides</div>
+                </a>
+                <a href="https://community.databricks.com" target="_blank" rel="noopener" class="bg-oat-light rounded-lg p-5 hover:shadow-md transition-shadow text-center">
+                    <i class="fas fa-users text-lava-500 text-2xl mb-3"></i>
+                    <div class="font-semibold text-navy-900 text-sm">Community</div>
+                    <div class="text-xs text-gray-500 mt-1">Ask questions & share knowledge</div>
+                </a>
+                <a href="https://www.databricks.com/solutions/accelerators" target="_blank" rel="noopener" class="bg-oat-light rounded-lg p-5 hover:shadow-md transition-shadow text-center">
+                    <i class="fas fa-bolt text-lava-500 text-2xl mb-3"></i>
+                    <div class="font-semibold text-navy-900 text-sm">Solution Accelerators</div>
+                    <div class="text-xs text-gray-500 mt-1">Pre-built industry solutions</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar -->
+    <section id="calendar" class="bg-oat-medium border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+            <div class="text-center mb-8">
+                <h3 class="text-xl font-bold text-navy-900 mb-2">
+                    <i class="fas fa-calendar-check mr-2 text-lava-500"></i>Workshop Calendar
+                </h3>
+                <p class="text-sm text-gray-600">All workshops and events in one view</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6">
+                <iframe src="https://calendar.google.com/calendar/embed?src=c_779fc1659357328eadc3f875c0cf022f28fa77c77ace313848f36461c4ee1882%40group.calendar.google.com&ctz=America%2FNew_York"
+                        style="border: 0"
+                        width="100%"
+                        height="600"
+                        frameborder="0"
+                        scrolling="no"
+                        class="w-full rounded-lg">
+                </iframe>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-navy-900 text-white">
-        <div class="max-w-6xl mx-auto px-6 py-8">
-            <div class="text-center">
-                <div class="flex items-center justify-center space-x-4 mb-4">
-                    <i class="fas fa-laptop-code text-lava-500"></i>
-                    <span class="text-lg font-medium">Databricks Customer Enablement</span>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <svg width="24" height="24" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="#FF3621"/><path d="M18 8L8 14L18 20L28 14L18 8Z" fill="white" opacity="0.9"/><path d="M8 18L18 24L28 18" stroke="white" stroke-width="2" fill="none" opacity="0.7"/><path d="M8 22L18 28L28 22" stroke="white" stroke-width="2" fill="none" opacity="0.5"/></svg>
+                    <span class="text-sm font-medium">Databricks Customer Enablement</span>
                 </div>
-                <p class="text-gray-400">
-                    Automated deployment via AWS Amplify • Updated: <span id="currentDate"></span>
-                </p>
+                <div class="flex items-center gap-4 text-xs text-gray-400">
+                    <span>&copy; 2026 Databricks, Inc.</span>
+                    <a href="https://www.databricks.com/legal/privacy-policy" class="hover:text-white" target="_blank" rel="noopener">Privacy</a>
+                    <a href="https://www.databricks.com/legal/terms-of-use" class="hover:text-white" target="_blank" rel="noopener">Terms</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Display current date
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    </script>
+<script>
+// ─── EVENT DATA ───
+const EVENTS = [
+    // ── March 2026 ──
+    { title: "Data Intelligence on Azure", date: "2026-03-03", time: "10:00 AM EST", endTime: "1:00 PM EST", duration: "3 hrs", type: "Virtual", category: "Cloud", description: "Hands-on cloud lab exploring Databricks Data Intelligence on the Azure platform.", url: "https://events.databricks.com/FY27Q1-TR-AzureCloudHands-onLab?scid=701Vp00000lXVelIAG&utm_medium=SalesOutbound&utm_source=AE" },
+    { title: "Executive Roadmap", date: "2026-03-05", time: "11:00 AM EST", endTime: "12:00 PM EST", duration: "1 hr", type: "Virtual", category: "Strategy", description: "Databricks vision, strategy and roadmap webinar for executive stakeholders.", url: "https://www.databricks.com/resources/webinar/databricks-vision-strategy-and-roadmap" },
+    { title: "Unified Governance with Unity Catalog", date: "2026-03-06", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Governance", description: "Learn how Unity Catalog works with your existing data catalogs and storage solutions to build a future-proof governance model. Upgrade your tables and apply fine-grained access controls.", highlights: ["Centralized metadata management", "Fine-grained access controls", "Identity federation & lineage tracking"], url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC" },
+    { title: "End-to-End AI on Databricks", date: "2026-03-10", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Machine Learning", description: "Walk through an end-to-end AI agent solution on Databricks. Build AI Agents with foundation LLMs, RAG, Vector Search, and PDF extraction.", highlights: ["Build AI agents with foundation LLMs and RAG", "PDF extraction using ai_parse_document", "Deploy real-time Q&A chatbots with LangChain", "Evaluate with Mosaic AI Agent Evaluation and MLflow 3.0"], presenters: "Rupal Gupta (Sr. Solutions Engineer) and Bhagyarshri Badgujar (Solutions Architect)", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-End-to-EndAI" },
+    { title: "Financial Services Forum", date: "2026-03-10", time: "9:00 AM EST", endTime: "5:00 PM EST", duration: "Full day", type: "In-Person", category: "Industry Forum", location: "New York City, NY", description: "Join managing directors and technology executives in financial services for insights on AI-powered transformation.", url: "https://events.databricks.com/fy27q1-if-finsforum-nyc/?scid=701Vp00000gkgKKIAY&utm_medium=sales_outbound&utm_source=ae" },
+    { title: "Intro to Databricks", date: "2026-03-11", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Getting Started", description: "Introductory tour of the Databricks platform for new users. Learn how it simplifies and accelerates your data projects.", highlights: ["Lakehouse fundamentals", "Delta Lake benefits", "Basic querying and transformations"], url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta" },
+    { title: "Databricks SQL Workshop", date: "2026-03-11", time: "10:00 AM EST", endTime: "1:00 PM EST", duration: "3 hrs", type: "Virtual", category: "SQL & Analytics", description: "Hands-on workshop focused on Databricks SQL capabilities and best practices.", url: "https://events.databricks.com/FY27Q1-TR-DBSQL-Workshop?scid=701Vp00000mVAtvIAG&utm_medium=SalesOutbound&utm_source=AE" },
+    { title: "Lakebase: Serverless Postgres Database", date: "2026-03-13", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Databases", description: "Fully managed, serverless Postgres database with low-latency reads and writes for operational and transactional use cases.", highlights: ["Serverless Postgres fundamentals", "Low-latency operational workloads", "Lakehouse integration"], url: "https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction" },
+    { title: "Data Engineering with Lakeflow", date: "2026-03-13", time: "10:00 AM EST", endTime: "1:00 PM EST", duration: "3 hrs", type: "Virtual", category: "Data Engineering", description: "Hands-on workshop on data engineering pipelines using Lakeflow.", url: "https://events.databricks.com/FY27Q1-TR-DataEngineering-Workshop?scid=701Vp00000mtK8vIAE&utm_medium=SalesOutbound&utm_source=AE" },
+    { title: "Databricks Apps", date: "2026-03-16", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Development", description: "Core concepts of Databricks Apps, hands-on development with familiar frameworks, and best practices for deploying governed, production-ready applications.", highlights: ["Develop with familiar frameworks", "Governed application deployment", "Apps run where your data lives"], url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DatabricksApps" },
+    { title: "NVIDIA GTC", date: "2026-03-16", time: "9:00 AM PT", endTime: "Mar 19", duration: "4 days", type: "In-Person", category: "Conference", location: "San Jose, CA", description: "Meet the Databricks team at the world's leading AI conference. Discover the latest in AI acceleration and GPU computing.", url: "https://sites.google.com/databricks.com/databricksatnvidiagtc" },
+    { title: "Databricks SQL and Serverless", date: "2026-03-17", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "SQL & Analytics", description: "Hands-on guidance for semi-structured data delivery at scale. Architect JSON pipelines and explore data with Databricks SQL.", highlights: ["Semi-structured data delivery", "JSON pipeline architecture", "Serverless compute"], url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-SQLandDelta" },
+    { title: "Data Intelligence on AWS", date: "2026-03-17", time: "10:00 AM EST", endTime: "1:00 PM EST", duration: "3 hrs", type: "Virtual", category: "Cloud", description: "Hands-on cloud lab exploring Databricks Data Intelligence on the AWS platform.", url: "https://events.databricks.com/FY27Q1-TR-AWSCloudHands-onLab?scid=701Vp00000lg39kIAA&utm_medium=SalesOutbound&utm_source=AE" },
+    { title: "Production-Ready Agents on Databricks", date: "2026-03-18", time: "2:00 PM EST", endTime: "4:00 PM EST", duration: "2 hrs", type: "Virtual", category: "Generative AI", description: "Leverage the Mosaic AI Agent Framework and Platform to bring high-quality, scalable Gen AI applications into production.", highlights: ["Mosaic AI Agent Framework", "Scalable Gen AI applications", "Production deployment & governance"], url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI" },
+    { title: "Cincinnati AI Day", date: "2026-03-18", time: "9:00 AM EST", endTime: "5:00 PM EST", duration: "Full day", type: "In-Person", category: "AI Day", location: "Cincinnati, OH", description: "Full-day hands-on AI workshop for practitioners. Learn to build, deploy and scale AI applications on Databricks.", url: "https://events.databricks.com/FY27-AI-Days-Cincinnati/?utm_source=sales&utm_medium=sales&utm_campaign=701vp00000i3nbhiam" },
+    { title: "Lakeflow: Declarative Pipelines & Connect", date: "2026-03-19", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Data Engineering", description: "Build simple, scalable, production-ready pipelines with Delta Live Tables and built-in orchestration.", highlights: ["Declarative pipeline development", "Built-in orchestration framework", "Real-time and batch processing"], url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables" },
+    { title: "Unified Governance with Unity Catalog", date: "2026-03-20", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Governance", description: "Learn how Unity Catalog works with your existing data catalogs and storage solutions to build a future-proof governance model.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC" },
+    { title: "End-to-End AI on Databricks", date: "2026-03-24", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Machine Learning", description: "Walk through an end-to-end AI agent solution on Databricks. Build AI Agents with foundation LLMs, RAG, Vector Search, and PDF extraction.", highlights: ["Build AI agents with foundation LLMs and RAG", "PDF extraction using ai_parse_document", "Deploy real-time Q&A chatbots with LangChain", "Evaluate with Mosaic AI Agent Evaluation and MLflow 3.0"], presenters: "Rupal Gupta (Sr. Solutions Engineer) and Bhagyarshri Badgujar (Solutions Architect)", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-End-to-EndAI" },
+    { title: "Intro to Databricks", date: "2026-03-25", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Getting Started", description: "Introductory tour of the Databricks platform for new users. Learn how it simplifies and accelerates your data projects.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta" },
+    { title: "Seattle AI Day", date: "2026-03-26", time: "9:00 AM PT", endTime: "5:00 PM PT", duration: "Full day", type: "In-Person", category: "AI Day", location: "Seattle, WA", description: "Pacific Northwest practitioners join us for AI innovation workshops and networking.", url: "https://events.databricks.com/FY27-AI-Days-Seattle/register" },
+    { title: "Lakebase: Serverless Postgres Database", date: "2026-03-27", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Databases", description: "Fully managed, serverless Postgres database with low-latency reads and writes for operational and transactional use cases.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction" },
+    { title: "Databricks Apps", date: "2026-03-30", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Development", description: "Core concepts of Databricks Apps, hands-on development with familiar frameworks, and best practices for deploying governed, production-ready applications.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DatabricksApps" },
+    { title: "Databricks SQL and Serverless", date: "2026-03-31", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "SQL & Analytics", description: "Hands-on guidance for semi-structured data delivery at scale. Architect JSON pipelines and explore data with Databricks SQL.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-SQLandDelta" },
+
+    // ── April 2026 ──
+    { title: "Chicago AI Day", date: "2026-04-01", time: "9:00 AM CT", endTime: "5:00 PM CT", duration: "Full day", type: "In-Person", category: "AI Day", location: "Chicago, IL", description: "Full-day hands-on AI workshop for practitioners in Chicago. Learn to build, deploy and scale AI applications on Databricks.", url: "https://events.databricks.com/FY27-AI-Days-Chicago" },
+    { title: "Production-Ready Agents on Databricks", date: "2026-04-01", time: "2:00 PM EST", endTime: "4:00 PM EST", duration: "2 hrs", type: "Virtual", category: "Generative AI", description: "Leverage the Mosaic AI Agent Framework and Platform to bring high-quality, scalable Gen AI applications into production.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI" },
+    { title: "Montreal AI Day", date: "2026-04-02", time: "9:00 AM ET", endTime: "5:00 PM ET", duration: "Full day", type: "In-Person", category: "AI Day", location: "Montreal, QC", description: "Full-day hands-on AI workshop for practitioners in Montreal. Learn to build, deploy and scale AI applications on Databricks.", url: "https://events.databricks.com/fy27-ai-days-montreal" },
+    { title: "Lakeflow: Declarative Pipelines & Connect", date: "2026-04-02", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Data Engineering", description: "Build simple, scalable, production-ready pipelines with Delta Live Tables and built-in orchestration.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables" },
+    { title: "Unified Governance with Unity Catalog", date: "2026-04-03", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Governance", description: "Learn how Unity Catalog works with your existing data catalogs and storage solutions to build a future-proof governance model.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC" },
+    { title: "End-to-End AI on Databricks", date: "2026-04-07", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Machine Learning", description: "Walk through an end-to-end AI agent solution on Databricks. Build AI Agents with foundation LLMs, RAG, Vector Search, and PDF extraction.", highlights: ["Build AI agents with foundation LLMs and RAG", "PDF extraction using ai_parse_document", "Deploy real-time Q&A chatbots with LangChain", "Evaluate with Mosaic AI Agent Evaluation and MLflow 3.0"], presenters: "Rupal Gupta (Sr. Solutions Engineer) and Bhagyarshri Badgujar (Solutions Architect)", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-End-to-EndAI" },
+    { title: "Intro to Databricks", date: "2026-04-08", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Getting Started", description: "Introductory tour of the Databricks platform for new users. Learn how it simplifies and accelerates your data projects.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta" },
+    { title: "Boston AI Day", date: "2026-04-09", time: "9:00 AM EST", endTime: "5:00 PM EST", duration: "Full day", type: "In-Person", category: "AI Day", location: "Boston, MA", description: "Full-day hands-on AI workshop for practitioners in Boston. Learn to build, deploy and scale AI applications on Databricks.", url: "https://events.databricks.com/FY27-AI-Days-Boston" },
+    { title: "Lakebase: Serverless Postgres Database", date: "2026-04-10", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Databases", description: "Fully managed, serverless Postgres database with low-latency reads and writes for operational and transactional use cases.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction" },
+    { title: "Databricks Apps", date: "2026-04-13", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Development", description: "Core concepts of Databricks Apps, hands-on development with familiar frameworks, and best practices for deploying governed, production-ready applications.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DatabricksApps" },
+    { title: "Databricks SQL and Serverless", date: "2026-04-14", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "SQL & Analytics", description: "Hands-on guidance for semi-structured data delivery at scale. Architect JSON pipelines and explore data with Databricks SQL.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-SQLandDelta" },
+    { title: "Calgary AI Day", date: "2026-04-15", time: "9:00 AM MT", endTime: "5:00 PM MT", duration: "Full day", type: "In-Person", category: "AI Day", location: "Calgary, AB", description: "Full-day hands-on AI workshop for practitioners in Calgary. Learn to build, deploy and scale AI applications on Databricks.", url: "https://events.databricks.com/FY27-AI-Days-Calgary" },
+    { title: "Production-Ready Agents on Databricks", date: "2026-04-15", time: "2:00 PM EST", endTime: "4:00 PM EST", duration: "2 hrs", type: "Virtual", category: "Generative AI", description: "Leverage the Mosaic AI Agent Framework and Platform to bring high-quality, scalable Gen AI applications into production.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI" },
+    { title: "Lakeflow: Declarative Pipelines & Connect", date: "2026-04-16", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Data Engineering", description: "Build simple, scalable, production-ready pipelines with Delta Live Tables and built-in orchestration.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables" },
+    { title: "Unified Governance with Unity Catalog", date: "2026-04-17", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Governance", description: "Learn how Unity Catalog works with your existing data catalogs and storage solutions to build a future-proof governance model.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-UnifiedGovernancewithUC" },
+    { title: "End-to-End AI on Databricks", date: "2026-04-21", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Machine Learning", description: "Walk through an end-to-end AI agent solution on Databricks. Build AI Agents with foundation LLMs, RAG, Vector Search, and PDF extraction.", highlights: ["Build AI agents with foundation LLMs and RAG", "PDF extraction using ai_parse_document", "Deploy real-time Q&A chatbots with LangChain", "Evaluate with Mosaic AI Agent Evaluation and MLflow 3.0"], presenters: "Rupal Gupta (Sr. Solutions Engineer) and Bhagyarshri Badgujar (Solutions Architect)", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-End-to-EndAI" },
+    { title: "St. Louis AI Day", date: "2026-04-22", time: "9:00 AM CT", endTime: "5:00 PM CT", duration: "Full day", type: "In-Person", category: "AI Day", location: "St. Louis, MO", description: "Full-day hands-on AI workshop for practitioners in St. Louis. Learn to build, deploy and scale AI applications on Databricks.", url: "https://events.databricks.com/FY27-AI-Days-StLouis" },
+    { title: "Intro to Databricks", date: "2026-04-22", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Getting Started", description: "Introductory tour of the Databricks platform for new users. Learn how it simplifies and accelerates your data projects.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-IntrotoLakehouseandDelta" },
+    { title: "Lakebase: Serverless Postgres Database", date: "2026-04-24", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Databases", description: "Fully managed, serverless Postgres database with low-latency reads and writes for operational and transactional use cases.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction" },
+    { title: "Databricks Apps", date: "2026-04-27", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Development", description: "Core concepts of Databricks Apps, hands-on development with familiar frameworks, and best practices for deploying governed, production-ready applications.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DatabricksApps" },
+    { title: "Databricks SQL and Serverless", date: "2026-04-28", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "SQL & Analytics", description: "Hands-on guidance for semi-structured data delivery at scale. Architect JSON pipelines and explore data with Databricks SQL.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-SQLandDelta" },
+    { title: "Production-Ready Agents on Databricks", date: "2026-04-29", time: "2:00 PM EST", endTime: "4:00 PM EST", duration: "2 hrs", type: "Virtual", category: "Generative AI", description: "Leverage the Mosaic AI Agent Framework and Platform to bring high-quality, scalable Gen AI applications into production.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-GenerativeAI" },
+    { title: "Lakeflow: Declarative Pipelines & Connect", date: "2026-04-30", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Data Engineering", description: "Build simple, scalable, production-ready pipelines with Delta Live Tables and built-in orchestration.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-on-Workshop-DeltaLiveTables" }
+];
+
+// ─── CATEGORY CONFIG ───
+const CATEGORY_META = {
+    "SQL & Analytics":  { bg: "bg-amber-600",   icon: "fa-database" },
+    "Generative AI":    { bg: "bg-purple-600",   icon: "fa-robot" },
+    "Data Engineering": { bg: "bg-blue-600",     icon: "fa-gears" },
+    "Governance":       { bg: "bg-emerald-600",  icon: "fa-shield-halved" },
+    "Development":      { bg: "bg-cyan-600",     icon: "fa-code" },
+    "Machine Learning": { bg: "bg-orange-600",   icon: "fa-brain" },
+    "Getting Started":  { bg: "bg-slate-700",    icon: "fa-graduation-cap" },
+    "Databases":        { bg: "bg-rose-600",     icon: "fa-server" },
+    "AI Day":           { bg: "bg-red-600",      icon: "fa-location-dot" },
+    "Industry Forum":   { bg: "bg-slate-600",    icon: "fa-building-columns" },
+    "Conference":       { bg: "bg-slate-800",    icon: "fa-people-group" },
+    "Cloud":            { bg: "bg-sky-600",      icon: "fa-cloud" },
+    "Strategy":         { bg: "bg-gray-600",     icon: "fa-chart-line" }
+};
+
+// ─── STATE ───
+let activeFormat = "all";
+let activeCategories = new Set();
+
+// ─── INIT ───
+function init() {
+    buildCategoryPills();
+    render();
+}
+
+function buildCategoryPills() {
+    const container = document.getElementById("category-filters");
+    const cats = [...new Set(EVENTS.map(e => e.category))].sort();
+    cats.forEach(cat => {
+        const meta = CATEGORY_META[cat] || { bg: "bg-gray-500", icon: "fa-tag" };
+        const btn = document.createElement("button");
+        btn.className = "filter-pill px-3 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0";
+        btn.dataset.category = cat;
+        btn.innerHTML = `<i class="fas ${meta.icon} mr-1"></i>${cat}`;
+        btn.onclick = () => toggleCategory(cat);
+        container.appendChild(btn);
+    });
+}
+
+// ─── FILTERS ───
+function setFormat(fmt) {
+    activeFormat = fmt;
+    document.querySelectorAll("[data-format]").forEach(btn => {
+        if (btn.dataset.format === fmt) {
+            btn.classList.add("active", "brand-gradient", "text-white");
+            btn.classList.remove("bg-white", "border", "border-gray-300", "text-gray-700");
+        } else {
+            btn.classList.remove("active", "brand-gradient", "text-white");
+        }
+    });
+    render();
+}
+
+function toggleCategory(cat) {
+    if (activeCategories.has(cat)) activeCategories.delete(cat);
+    else activeCategories.add(cat);
+    document.querySelectorAll("[data-category]").forEach(btn => {
+        const meta = CATEGORY_META[btn.dataset.category] || { bg: "bg-gray-500" };
+        if (activeCategories.has(btn.dataset.category)) {
+            btn.classList.add("active", meta.bg, "text-white");
+        } else {
+            btn.classList.remove("active", meta.bg, "text-white");
+        }
+    });
+    render();
+}
+
+function clearFilters() {
+    activeFormat = "all";
+    activeCategories.clear();
+    document.querySelectorAll("[data-format]").forEach(btn => {
+        if (btn.dataset.format === "all") btn.classList.add("active", "brand-gradient", "text-white");
+        else btn.classList.remove("active", "brand-gradient", "text-white");
+    });
+    document.querySelectorAll("[data-category]").forEach(btn => {
+        const meta = CATEGORY_META[btn.dataset.category] || { bg: "bg-gray-500" };
+        btn.classList.remove("active", meta.bg, "text-white");
+    });
+    render();
+}
+
+// ─── RENDER ───
+function render() {
+    const today = new Date().toISOString().slice(0, 10);
+    let filtered = EVENTS.filter(e => e.date >= today);
+    if (activeFormat !== "all") filtered = filtered.filter(e => e.type === activeFormat);
+    if (activeCategories.size > 0) filtered = filtered.filter(e => activeCategories.has(e.category));
+    filtered.sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
+
+    const feed = document.getElementById("event-feed");
+    const empty = document.getElementById("empty-state");
+    const total = EVENTS.filter(e => e.date >= today).length;
+    document.getElementById("event-counter").textContent = `Showing ${filtered.length} of ${total} upcoming events`;
+
+    if (filtered.length === 0) {
+        feed.innerHTML = "";
+        empty.classList.remove("hidden");
+        return;
+    }
+    empty.classList.add("hidden");
+
+    let html = "";
+    let currentMonth = "";
+    let currentWeekKey = "";
+    let weekNum = 0;
+    filtered.forEach((ev, i) => {
+        const d = new Date(ev.date + "T12:00:00");
+        const month = d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+        if (month !== currentMonth) {
+            currentMonth = month;
+            weekNum = 0;
+            currentWeekKey = "";
+            html += `<div class="flex items-center gap-3 ${i > 0 ? 'mt-10' : ''} mb-4">
+                <h2 class="text-lg font-bold text-navy-900">${month}</h2>
+                <div class="flex-1 h-px bg-gray-300"></div>
+            </div>`;
+        }
+        // Week grouping: compute Monday of this event's week
+        const day = d.getDay();
+        const mon = new Date(d);
+        mon.setDate(d.getDate() - ((day + 6) % 7));
+        const fri = new Date(mon);
+        fri.setDate(mon.getDate() + 4);
+        const weekKey = mon.toISOString().slice(0, 10);
+        if (weekKey !== currentWeekKey) {
+            currentWeekKey = weekKey;
+            weekNum++;
+            const monStr = mon.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+            const friStr = fri.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+            html += `<div class="flex items-center gap-3 mt-6 mb-3">
+                <span class="bg-navy-800 text-white text-sm font-bold px-3 py-1 rounded">WEEK ${weekNum}</span>
+                <span class="text-sm font-medium text-gray-500">${monStr} – ${friStr}</span>
+                <div class="flex-1 h-px bg-gray-200"></div>
+            </div>`;
+        }
+        html += buildCard(ev);
+    });
+    feed.innerHTML = html;
+}
+
+function buildCard(ev) {
+    const meta = CATEGORY_META[ev.category] || { bg: "bg-gray-500", icon: "fa-tag" };
+    const d = new Date(ev.date + "T12:00:00");
+    const dateStr = d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+    const isInPerson = ev.type === "In-Person";
+
+    let card = `<div class="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-5 sm:p-6 mb-4 card-enter">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="${meta.bg} text-white text-xs font-medium px-2.5 py-1 rounded-full"><i class="fas ${meta.icon} mr-1"></i>${ev.category}</span>
+            ${isInPerson
+                ? '<span class="bg-red-50 text-red-700 border border-red-200 text-xs font-medium px-2.5 py-1 rounded-full"><i class="fas fa-location-dot mr-1"></i>In-Person</span>'
+                : '<span class="bg-gray-50 text-gray-600 border border-gray-200 text-xs font-medium px-2.5 py-1 rounded-full"><i class="fas fa-video mr-1"></i>Virtual</span>'
+            }
+        </div>
+        <h3 class="text-lg font-bold text-navy-900 mb-2">${ev.title}</h3>
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 mb-3">
+            <span><i class="fas fa-calendar-day mr-1.5 text-lava-500"></i>${dateStr}</span>
+            <span><i class="fas fa-clock mr-1.5 text-lava-500"></i>${ev.time}</span>
+            <span><i class="fas fa-hourglass-half mr-1.5 text-lava-500"></i>${ev.duration}</span>
+            ${ev.location ? `<span><i class="fas fa-map-marker-alt mr-1.5 text-lava-500"></i>${ev.location}</span>` : ""}
+        </div>
+        <p class="text-gray-700 text-sm mb-3">${ev.description}</p>`;
+
+    if (ev.highlights) {
+        card += `<div class="bg-amber-50 rounded p-3 mb-3">
+            <ul class="text-xs text-gray-700 space-y-1">${ev.highlights.map(h => `<li class="flex items-start gap-1.5"><i class="fas fa-check text-amber-600 mt-0.5 text-[10px]"></i>${h}</li>`).join("")}</ul>
+        </div>`;
+    }
+    if (ev.presenters) {
+        card += `<div class="bg-gray-50 rounded p-3 mb-3 text-xs">
+            <span class="font-semibold text-navy-800">Presenters:</span> <span class="text-gray-700">${ev.presenters}</span>
+        </div>`;
+    }
+
+    card += `<a href="${ev.url}" target="_blank" rel="noopener" class="btn-lava inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium">
+            Register now <i class="fas fa-arrow-right ml-2 text-xs"></i>
+        </a>
+    </div>`;
+    return card;
+}
+
+// ─── NEWSLETTER DROPDOWN ───
+function toggleNewsletterDropdown() {
+    document.getElementById("newsletter-dropdown").classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+    const dd = document.getElementById("newsletter-dropdown");
+    if (!e.target.closest("#newsletter-dropdown") && !e.target.closest("[onclick*=toggleNewsletterDropdown]")) {
+        dd.classList.remove("open");
+    }
+});
+
+// ─── GO ───
+init();
+</script>
 </body>
 </html>
