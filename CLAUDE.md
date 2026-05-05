@@ -86,6 +86,36 @@ This is a **unified event feed** for Databricks Customer Enablement workshops an
 1. Git push to `main` triggers automatic AWS Amplify deployment
 2. Changes appear live at dbx4startups.com within minutes
 
+## Calendar Sync (sync_calendar.py)
+
+Pushes events from `databricks_workshops_EST.csv` to the embedded Google Calendar (`c_779fc...@group.calendar.google.com`). Idempotent and rollback-safe.
+
+**Standard workflow:**
+```bash
+python3 sync_calendar.py                       # dry-run preview (default, no API writes)
+python3 sync_calendar.py --push                # apply inserts & updates
+python3 sync_calendar.py --push --force        # also apply deletions
+```
+
+**Safety design:**
+- Every event we create is tagged with `extendedProperties.private.source="workshop_csv"` and a stable `csv_id` (sha1 of subject + start date + start time).
+- Re-runs match by `csv_id` — no duplicates, only insert/update/delete.
+- Each `--push` writes `calendar_backups/pre_push_<ts>.json` and appends to `calendar_sync_log.jsonl`.
+- Only events tagged by this script are ever touched. Manually-created calendar events are invisible to the tool.
+- Deletions require `--force` (extra confirmation gate).
+
+**Rollback:**
+```bash
+python3 sync_calendar.py --rollback-last       # undo most recent --push
+python3 sync_calendar.py --delete-all-tagged --force   # nuclear: remove every csv-sourced event
+```
+
+**Test calendar:** `--calendar-id <some-test-cal-id> --push` to push to a personal scratch calendar before targeting the real one.
+
+**Auth:** Uses gcloud application-default credentials. If token fails: `gcloud auth application-default login`.
+
+**Note:** `calendar_sync_log.jsonl` and `calendar_backups/` are local state — keep them in `.gitignore` (audit log of past pushes; not for sharing).
+
 ## Marketing Email Scanner
 
 When the user asks to check for new events or wants to update the site, run `check_marketing_emails.py` to scan the latest "EE & Startup Field Marketing Update" emails from Gmail. This surfaces new events not yet on the site.

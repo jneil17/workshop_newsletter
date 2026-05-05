@@ -29,3 +29,7 @@ amplify/
 # Node.js (if used for local development)
 node_modules/
 package-lock.json
+
+# Calendar sync state (local audit log, do not commit)
+calendar_sync_log.jsonl
+calendar_backups/
