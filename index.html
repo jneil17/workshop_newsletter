@@ -331,10 +331,11 @@ const LINKEDINS = {
 };
 
 function linkifyPresenters(str) {
+    // Strip role titles in parens (both individual and trailing collective titles)
+    let out = str.replace(/\s*\([^)]*\)/g, "").replace(/\s+/g, " ").trim();
     // Replace known names with LinkedIn-linked versions. Sort by length desc so
     // longer names match before shorter substrings (e.g., "John Neil" before "John").
     const names = Object.keys(LINKEDINS).sort((a, b) => b.length - a.length);
-    let out = str;
     for (const name of names) {
         const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         const re = new RegExp(`\\b${escaped}\\b`, "g");
