@@ -312,6 +312,38 @@ const EVENTS = [
     { title: "Lakebase: Serverless Postgres Database", date: "2026-07-31", time: "2:00 PM EST", endTime: "3:30 PM EST", duration: "1.5 hrs", type: "Virtual", category: "Databases", description: "Fully managed, serverless Postgres database for operational and transactional workloads, with low-latency reads/writes and Lakehouse integration.", url: "https://events.databricks.com/FY26-EV-AEB-Hands-onWorkshop-DeltainProduction" }
 ];
 
+// ─── PRESENTER LINKEDINS ───
+const LINKEDINS = {
+    "Amanda Moulaison":     "https://www.linkedin.com/in/amanda-moulaison/",
+    "Benjamin Nwokeleme":   "https://www.linkedin.com/in/ben-nwokeleme/",
+    "Bhagyarshri Badgujar": "https://www.linkedin.com/in/bhagyashribadgujar/",
+    "Calvin Min":           "https://www.linkedin.com/in/calvinjmin/",
+    "John Armstrong":       "https://www.linkedin.com/in/john-armstrong-497a1917a/",
+    "John Neil":            "https://www.linkedin.com/in/john-william-neil/",
+    "Karthiga Mahalingam":  "https://www.linkedin.com/in/karthiga-mahalingam/",
+    "Marcos Bustos Alfaro": "https://www.linkedin.com/in/marcos-bustos-alfaro/",
+    "Neha Prabhu":          "https://www.linkedin.com/in/neha--prabhu/",
+    "Rupal Gupta":          "https://www.linkedin.com/in/rupalgupta15/",
+    "Shakti Reddy":         "https://www.linkedin.com/in/shakti-reddy/",
+    "Smriti Sridhar":       "https://www.linkedin.com/in/smritisridhar41/",
+    "Tayyab Ali":           "https://www.linkedin.com/in/tayyab-m-ali/",
+    "Te Chen":              "https://www.linkedin.com/in/tchen2002/"
+};
+
+function linkifyPresenters(str) {
+    // Replace known names with LinkedIn-linked versions. Sort by length desc so
+    // longer names match before shorter substrings (e.g., "John Neil" before "John").
+    const names = Object.keys(LINKEDINS).sort((a, b) => b.length - a.length);
+    let out = str;
+    for (const name of names) {
+        const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const re = new RegExp(`\\b${escaped}\\b`, "g");
+        out = out.replace(re,
+            `<a href="${LINKEDINS[name]}" target="_blank" rel="noopener" class="text-lava-600 hover:underline">${name}<i class="fab fa-linkedin ml-1 text-[10px]"></i></a>`);
+    }
+    return out;
+}
+
 // ─── CATEGORY CONFIG ───
 const CATEGORY_META = {
     "SQL & Analytics":  { bg: "bg-amber-600",   icon: "fa-database" },
@@ -500,7 +532,7 @@ function buildCard(ev) {
     }
     if (ev.presenters) {
         card += `<div class="bg-gray-50 rounded p-3 mb-3 text-xs">
-            <span class="font-semibold text-navy-800">Presenters:</span> <span class="text-gray-700">${ev.presenters}</span>
+            <span class="font-semibold text-navy-800">Presenters:</span> <span class="text-gray-700">${linkifyPresenters(ev.presenters)}</span>
         </div>`;
     }
 
